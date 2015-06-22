@@ -11,7 +11,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animatable.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
-<link rel="import" href="../onsAnimatie.html">
+<link rel="import" href="../ons-animatie-in.html">
+<link rel="import" href="../ons-animatie-uit.html">
 
 <dom-module id="a-button">
   <style>
@@ -84,9 +85,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       value: function() {
         return {
           'entry': {
-            name: 'ons-animation',
+            name: 'ons-animatie-in',
             node: this.$.wit,
-            timing: {duration: 2000}
+            timing: {duration: 1000}
+          },
+          'exit': {
+            name: 'ons-animatie-uit',
+            node: this.$.wit,
+            timing: {duration: 1000}
           }
           // provided by neon-animation/animations/scale-down-animation.html
           
@@ -113,12 +119,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     animate: function(){
-      console.log('start anumatie');
+      console.log('start animatie');
       this.fadeIn();
     },
 
     _onNeonAnimationFinish: function() {
-      this.fadeIn();
+         if(this.fader=='in'){
+        this.fadeOut();
+      } else {
+        this.fadeIn();
+      }
     }
   });
 })();
