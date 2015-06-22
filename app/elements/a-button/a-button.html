@@ -87,6 +87,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             name: 'ons-animation',
             node: this.$.wit,
             timing: {duration: 2000}
+          }, 
+          'exit': {
+            name: 'ons-animation',
+            node: this.$.wit,
+            timing: {duration: 2000}
           }
           // provided by neon-animation/animations/scale-down-animation.html
           
@@ -118,8 +123,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onNeonAnimationFinish: function() {
-      this.fadeIn();
-
+      if(this.fader=='in'){
+        this.fadeOut();
+      } else {
+        this.fadeIn();
+      }
     }
   });
 })();
