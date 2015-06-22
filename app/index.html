@@ -82,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <!-- <img class="mainimgs" src="images/icon-loc2.svg" on-click="askLocPerm">
 
  -->
-              <a-button icon="../../images/icon-loc2.svg"></a-button>
+              <a-button icon="../../images/icon-loc2.svg" on-click="_next"></a-button>
               <template is="dom-if" if="{{locationPerm}}">
               <leaflet-map>
                 <leaflet-geolocation enable-high-accuracy

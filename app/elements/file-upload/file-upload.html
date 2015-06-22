@@ -3,7 +3,8 @@
 <dom-module id="file-upload">
   <template>
 <link rel="stylesheet" href="file-upload.css">
-      <input type="file" name="File" id="file" on-change="setFiles" capture="camera">
+      <button on-click="startFile">UP!</button>
+      <input type="file" name="File" id="file" on-change="setFiles" capture="camera" hidden>
   </template>
   </dom-module>
   <script>
@@ -23,6 +24,10 @@
             observer: 'testObs'
         }
 
+        },
+
+        startFile: function(){
+          
         },
 
         ready: function(){
