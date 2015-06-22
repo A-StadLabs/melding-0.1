@@ -125,20 +125,6 @@
 
       <iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
 
-
-          <template is="dom-if" if="{{!locationpos}}">
-
-
-            <paper-dialog modal entry-animation="scale-up-animation" exit-animation="fade-out-animation" opened class="dialog">
-              <h2>Header</h2>
-              <p>
-                Je toestel zal je huidige locatie vragen. Op deze manier kunnen we bepalen op welke plaats de melding zich plaatsvindt.
-              </p>
-              <paper-button dialog-confirm on-tap="getLocation">Ok, ga door</paper-button>
-            </paper-dialog>
-          </template>
-
-          <template is="dom-if" if="{{locationpos}}">
             <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
             
             <paper-input-container>
@@ -154,7 +140,6 @@
           </template>
 
           <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
-          </template>
 
       </div>
 
@@ -186,17 +171,21 @@
       userid: {
         type: String,
         notify: true
+      },
+
+      latitude: {
+        type: String,
+        notify: true
+      },
+
+      longitude: {
+        type: String,
+        notify: true
       }
     },
 
     ready: function(){
-      this.locationpos = false;
-      this.getLocation();
-      var that = this;
-      window.addEventListener('gpsacquired', function(e){
-        console.log('has position', e.detail.longitude, e.detail.latitude);
-        that.locationpos = true;
-      });
+      
     },
     // hier als er nog niets in localstorage zit
 
