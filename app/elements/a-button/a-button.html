@@ -9,7 +9,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animatable.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 
@@ -19,9 +18,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: block;
     }
 
-    .mainimgs {
-      @apply --mainimgs; 
-    }
+
+.mainimgs {
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 100px;
+  width: 200px;
+  height: 200px;
+}
+
+
+
+.mainimgs img {
+  width: 200px;
+  height: 200px;
+}
+
+
+.mainimgs:hover {
+  background-color: rgba(255,255,255,0.30);
+  cursor: pointer;
+}
+
+
 
   </style>
   <template>
