@@ -59,17 +59,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
 
-  <paper-drawer-panel id="paperDrawerPanel">
+  <paper-drawer-panel id="paperDrawerPanel" forceNarrow>
       <div drawer>
         <span>{{userid}}</span>
 
       </div>
 
-          <div main class="blueback">
+          <div main class="blueback" >
           <!-- <iron-pages attr-for-selected="data-route" selected="{{route}}"> -->
           <paper-toolbar>
-            <paper-icon-button icon="menu" class="flex" paper-drawer-toggle></paper-icon-button>
             <img src="images/a_wit-rgb.svg">
+            <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+
           </paper-toolbar>
 
           <neon-animated-pages selected="{{selected}}" id="pages" 
