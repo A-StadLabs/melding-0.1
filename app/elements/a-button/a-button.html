@@ -1,0 +1,98 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animatable.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+
+<dom-module id="a-button">
+  <style>
+    :host {
+      display: block;
+    }
+
+    .mainimgs {
+      @apply --mainimgs; 
+    }
+
+  </style>
+  <template>
+    <img class="mainimgs" src="../../images/icon-loc2.svg" on-click="animate">
+  </template>
+</dom-module>
+<script>
+(function() {
+  Polymer({
+    is: 'a-button',
+
+    behaviors: [
+      Polymer.NeonAnimationRunnerBehavior
+    ],
+
+    properties: {
+    animationConfig: {
+      value: function() {
+        return {
+          'entry': [{
+            name: 'fade-out-animation',
+            node: this,
+            timing: {duration: 1000}
+          },
+          {
+            name: 'scale-down-animation',
+            node: this,
+            timing: {delay: 500,
+                      duration: 1000}
+          }], 
+          'exit': {
+            name: 'fade-in-animation',
+            node: this,
+            timing: {duration: 5000}
+          }
+          // provided by neon-animation/animations/scale-down-animation.html
+          
+        }    
+      }
+    }
+  },
+
+    listeners: {
+    // this event is fired when the animation finishes
+      'neon-animation-finish': '_onNeonAnimationFinish'
+    },
+
+    fadeIn: function() {
+      // run scale-down-animation
+      this.playAnimation('entry');
+      this.fader = 'in';
+    },
+
+    fadeOut: function() {
+      // run scale-down-animation
+      this.playAnimation('exit');
+      this.fader = 'out';
+    },
+
+    animate: function(){
+      console.log('start anumatie');
+      this.fadeIn();
+    },
+
+    _onNeonAnimationFinish: function() {
+      if(this.fader=='in'){
+        this.fadeOut();
+      } else {
+        this.fadeIn();
+      }
+    }
+  });
+})();
+</script>
