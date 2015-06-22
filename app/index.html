@@ -60,7 +60,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template is="dom-bind" id="app">
 
           <!-- <iron-pages attr-for-selected="data-route" selected="{{route}}"> -->
-          <paper-toolbar><img src="images/a_wit-rgb.svg"></paper-toolbar>
+          <paper-toolbar>
+            <paper-icon-button icon="menu" class="flex"></paper-icon-button>
+            <img src="images/a_wit-rgb.svg">
+          </paper-toolbar>
 
           <neon-animated-pages selected="{{selected}}" class="flex" id="pages" 
             entry-animation="{{entryAnimation}}"
@@ -72,7 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <!-- <img class="mainimgs" src="images/icon-loc2.svg" on-click="askLocPerm">
 
  -->
-  <a-button></a-button>
+              <a-button icon="../../images/icon-loc2.svg"></a-button>
               <template is="dom-if" if="{{locationPerm}}">
               <leaflet-map>
                 <leaflet-geolocation enable-high-accuracy

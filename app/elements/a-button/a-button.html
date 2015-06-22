@@ -17,8 +17,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="a-button">
   <style>
     :host {
-      display: inline-block;
-
+      display: block;
+      margin-top: -60px;
     }
 
 
@@ -62,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <div class="mainimgs">
-          <img class="icon" src="../../images/icon-loc2.svg">
+          <img class="icon" src="{{icon}}">
     <div id="wit">
     </div>
 
@@ -81,6 +81,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     ],
 
     properties: {
+
+    icon: {
+        type: String,
+        value: '',
+        notify: true,
+        observer: 'hasvalue'
+      },
+
     animationConfig: {
       value: function() {
         return {
