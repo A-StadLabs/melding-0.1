@@ -67,9 +67,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <neon-animatable>
             <div class="canvas blueback">
+<!--               <h1>Hier locatie vragen<span>{{longitude}}</span></h1> -->
+              <img class="mainimgs" src="images/icon-loc2.svg" on-click="askLocPerm">
 
-              
-              <h1>Hier locatie vragen<span>{{longitude}}</span></h1>
 
               <template is="dom-if" if="{{locationPerm}}">
               <leaflet-map>
@@ -82,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </template>
               </template>
               
-              <button on-click="askLocPerm">Ja! Locatie!</button>
+<!--               <paper-button class="bigbtns blueback" on-click="askLocPerm">OK!</paper-button> -->
             </div>
 
             </neon-animatable>
