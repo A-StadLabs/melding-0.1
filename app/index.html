@@ -77,6 +77,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
                 </leaflet-geolocation>
               </leaflet-map>
+              <template is="dom-if" if="{{latitude}}">
+                <button on-click="_next">Ga verder</button>
+              </template>
               </template>
               
               <button on-click="askLocPerm">Ja! Locatie!</button>
@@ -85,17 +88,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </neon-animatable>
 
             <neon-animatable>
-              
-              <h1>2!</h1>
+              <h1>Hier kan je een melding doen</h1>
               <a href="users">Users</a>
-
             </neon-animatable>
 
             <neon-animatable>
-              
               <h1>3!</h1>
               <a href="users">Users</a>
-
             </neon-animatable>
 
             
