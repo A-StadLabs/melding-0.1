@@ -60,7 +60,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template is="dom-bind" id="app">
 
   <paper-drawer-panel id="paperDrawerPanel">
-      <div drawer></div>
+      <div drawer>
+        <span>{{userid}}</span>
+
+      </div>
 
           <div main>
           <!-- <iron-pages attr-for-selected="data-route" selected="{{route}}"> -->
@@ -97,7 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </neon-animatable>
 
             <neon-animatable>
-              <a-melding></a-melding>
+              <a-melding userid="{{userid}}"></a-melding>
             </neon-animatable>
 
             <neon-animatable>
