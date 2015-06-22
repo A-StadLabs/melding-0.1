@@ -29,7 +29,7 @@ Configuration:
 
   Polymer({
 
-    is: 'ons-animatie-in',
+    is: 'ons-animation',
 
     behaviors: [
       Polymer.NeonAnimationBehavior
@@ -38,10 +38,9 @@ Configuration:
     configure: function(config) {
       var node = config.node;
       this._effect = new KeyframeEffect(node, [
-
         {'opacity': '1', 'transform': 'scale(1, 1)'},
-        {'opacity': '0.5', 'transform': 'scale(0.92, 0.92)'}
-
+        {'opacity': '0.5', 'transform': 'scale(0.5, 0.5)'},
+        {'opacity': '1',  'transform': 'scale(1, 1)'}
       ], this.timingFromConfig(config));
       return this._effect;
     }
