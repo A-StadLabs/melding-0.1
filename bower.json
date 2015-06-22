@@ -7,7 +7,10 @@
     "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "page": "visionmedia/page.js#~1.6.3",
-    "leaflet-map": "leaflet-extras/leaflet-map#~1.0.1"
+    "leaflet-map": "leaflet-extras/leaflet-map#~1.0.1",
+    "node-uuid": "~1.4.3",
+    "firebase-element": "GoogleWebComponents/firebase-element#~1.0.1",
+    "momentjs": "~2.10.3"
   },
   "devDependencies": {
     "web-component-tester": "*",
