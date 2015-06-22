@@ -148,14 +148,7 @@
 <script>
 (function() {
 
-  function showPosition(position) {
-    //    var that = this;
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    var event = new CustomEvent('gpsacquired', {'detail':{'longitude': longitude, 'latitude': latitude}});
-    window.dispatchEvent(event);
-    //console.log('heb positie: ', latitude, longitude);
-  };
+  
 
   Polymer({
     is: 'a-melding',
@@ -206,13 +199,12 @@
     },
 
     saveIt: function(){
-      this.getLocation();
 
       if(this.userid==null){
         this.userid = uuid.v1();
       };
 
-      console.log('ik ga saven: ', longitude, latitude, this.imageval, this.comment);
+      console.log('ik ga saven: ', this.longitude, this.latitude, this.imageval, this.comment);
 
       var today = Date.now();
 
@@ -220,7 +212,7 @@
 
       var userid = this.userid;
 
-      var testID = testFB.push({'lon':longitude, 'lat':latitude, 'image':this.imageval, 'comment':this.comment, 'tijd': today, 'user': userid });
+      var testID = testFB.push({'lon':this.longitude, 'lat':this.latitude, 'image':this.imageval, 'comment':this.comment, 'tijd': today, 'user': userid });
 
       var newKey = testID.key();
 
