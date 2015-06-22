@@ -88,6 +88,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         observer: 'hasvalue'
       },
 
+    state: {
+        type: String,
+        value: 'waiting',
+        notify: true,
+        observer: 'stateChanged'
+    },
+
     animationConfig: {
       value: function() {
         return {
@@ -100,6 +107,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             name: 'ons-animatie-uit',
             node: this.$.wit,
             timing: {duration: 750}
+          },
+          'thinking': {
+            name: 'scale-down-animation',
+            node: this.$.wit,
+            timing: {delay: 7000}
           }
           // provided by neon-animation/animations/scale-down-animation.html
           
@@ -115,6 +127,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     ready: function(){
       this.playAnimation('entry');
+    },
+
+    stateChanged: function(){
+      console.log('button state changed');
+      this.playAnimation('thinking');
     },
 
     fadeIn: function() {

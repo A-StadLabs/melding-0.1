@@ -31,6 +31,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // imports are loaded and elements have been registered
   });
 
+  app.ready = function(){
+    this.locationPerm = false;
+  },
+
   app._next = function(){
     app.entryAnimation = 'slide-from-right-animation';
     app.exitAnimation = 'slide-left-animation';
@@ -38,6 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   },
 
   app.askLocPerm = function(){
+    this.buttonstate = 'waiting';
     this.locationPerm = true;
   },
 
