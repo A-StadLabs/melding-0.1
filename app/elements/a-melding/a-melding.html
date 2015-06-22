@@ -1,4 +1,4 @@
-<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
@@ -130,8 +130,8 @@
             <paper-input-container>
           <label>Opmerkingen?</label>
           <input is="iron-input" bind-value="{{comment}}">
-<!-- >>>>>>> origin/master
- -->            <button on-tap="saveIt">Versturen</button>
+          </paper-input-container>
+         <button on-tap="saveIt">Versturen</button>
 
           <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" order-by-child="key"></firebase-collection>
 
