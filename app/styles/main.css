@@ -12,10 +12,3 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
 }
-
-neon-animatable {
-        color: black;
-        @apply(--layout-horizontal);
-        @apply(--layout-center-center);
-        @apply(--paper-font-display4);
-      }
