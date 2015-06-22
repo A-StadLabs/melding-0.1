@@ -68,9 +68,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div main class="blueback" >
           <!-- <iron-pages attr-for-selected="data-route" selected="{{route}}"> -->
           <paper-toolbar>
-            <img src="images/a_wit-rgb.svg">
-            <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-
+            <img class="drawerbtn" src="images/a_wit-rgb.svg" paper-drawer-toggle>
+<!--             <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+ -->
           </paper-toolbar>
 
           <neon-animated-pages selected="{{selected}}" id="pages" 
@@ -101,7 +101,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </neon-animatable>
 
             <neon-animatable>
+                        <div class="canvas blueback flex">
+
               <a-melding userid="{{userid}}"></a-melding>
+                          </div>
+
             </neon-animatable>
 
             <neon-animatable>
