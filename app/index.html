@@ -67,9 +67,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <neon-animatable>
             <div class="canvas blueback">
-              <h1>Hier locatie vragen</h1>
-              <button on-click="_next">Ja! Locatie!</button>
+
+              
+              <h1>Hier locatie vragen<span>{{longitude}}</span></h1>
+
+              <template is="dom-if" if="{{locationPerm}}">
+              <leaflet-map>
+                <leaflet-geolocation enable-high-accuracy
+                  latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
+                </leaflet-geolocation>
+              </leaflet-map>
+              </template>
+              
+              <button on-click="askLocPerm">Ja! Locatie!</button>
             </div>
+
             </neon-animatable>
 
             <neon-animatable>
