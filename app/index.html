@@ -65,19 +65,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       </div>
 
-          <div main>
+          <div main class="blueback">
           <!-- <iron-pages attr-for-selected="data-route" selected="{{route}}"> -->
           <paper-toolbar>
             <paper-icon-button icon="menu" class="flex" paper-drawer-toggle></paper-icon-button>
             <img src="images/a_wit-rgb.svg">
           </paper-toolbar>
 
-          <neon-animated-pages selected="{{selected}}" class="flex" id="pages" 
+          <neon-animated-pages selected="{{selected}}" id="pages" 
             entry-animation="{{entryAnimation}}"
             exit-animation="{{exitAnimation}}">
 
             <neon-animatable>
-            <div class="canvas blueback">
+            <div class="canvas blueback flex">
 <!--               <h1>Hier locatie vragen<span>{{longitude}}</span></h1> -->
               <!-- <img class="mainimgs" src="images/icon-loc2.svg" on-click="askLocPerm">
 
