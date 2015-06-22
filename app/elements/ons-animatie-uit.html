@@ -38,8 +38,14 @@ Configuration:
     configure: function(config) {
       var node = config.node;
       this._effect = new KeyframeEffect(node, [
+<<<<<<< HEAD:app/elements/ons-animatie-uit.html
         {'opacity': '1'},
         {'opacity': '0.5'}
+=======
+        {'opacity': '1', 'width': '200px', 'height': '200px'},
+        {'opacity': '0.5', 'width': '195px', 'height': '195px'},
+        {'opacity': '1', 'width': '200px', 'height': '200px'}
+>>>>>>> origin/master:app/elements/onsAnimatie.html
       ], this.timingFromConfig(config));
       return this._effect;
     }

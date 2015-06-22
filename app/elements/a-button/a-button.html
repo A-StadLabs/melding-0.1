@@ -17,15 +17,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: inline-block;
+
     }
 
 
 .mainimgs {
-  position: fixed;
-  background-color: rgba(255,255,255,0.15);
+/*  background-color: rgba(255,255,255,0.15);*/
   border-radius: 100px;
   width: 200px;
   height: 200px;
+
 }
 
 
@@ -36,25 +37,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 
-.mainimgs:hover {
+/*.mainimgs:hover {
   background-color: rgba(255,255,255,0.30);
   cursor: pointer;
-}
+}*/
 
 .icon {
   position: fixed;
-
-
 }
 
+
+
+#wit {
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 100px;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+
+}
 
 
   </style>
   <template>
-    <div class="mainimgs" id="wit">
+    <div class="mainimgs" on-click="animate">
+          <img class="icon" src="../../images/icon-loc2.svg">
+    <div id="wit">
     </div>
 
-    <img class="icon" src="../../images/icon-loc2.svg" on-click="animate">
+
+    </div>
+
   </template>
 </dom-module>
 <script>
