@@ -1,0 +1,108 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../components/google-map/google-map.html">
+<link rel="import" href="../../components/firebase-element/firebase.html">
+
+
+
+<dom-module id="a-meldingitem">
+  <style>
+    :host {
+      display: block;
+      margin: 30px 0px 0px 0px;
+
+    }
+
+    h2 {
+      margin: 0px 0px 0px 0px;
+      padding: 0px;
+      font-size: 20px;
+      font-weight: 300;
+      text-transform: capitalize;
+    }
+
+    img {
+      width: 300px;
+      margin-right: 6px;
+    }
+
+    google-map {
+      height: 150px;
+      width: 300px;
+    }
+
+
+  </style>
+  <template>
+   
+  <template is="dom-if" if={{resolve}}>
+     <h2>{{datum}}</h2>
+     <p>{{comment}}</p>
+     <img src="{{image}}" />
+     <google-map zoom="17" disable-default-ui longitude="{{longitude}}" latitude="{{latitude}}" >
+      <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
+          title=""></google-map-marker>
+     </google-map>
+</template>
+<!--      <p>{{newdatum}}</p>
+ -->
+     
+<!--     <p>{{kleur}}</p> -->
+  </template>
+</dom-module>
+
+<script>
+(function() {
+
+
+  Polymer({
+    is: 'a-meldingitem',
+
+    properties: {
+      key: {
+        type: String,
+        value: '',
+        notify: true,
+        observer: 'hasvalue'
+      }
+    },
+
+
+      ready: function(){
+        //console.log('i has streets loaded');
+        this.hasvalue();
+      },
+
+      hasvalue: function(){
+        console.log(this.key);
+        var that = this;
+        var getFB = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/meldingen/'+this.key);
+        getFB.once('value', function(snap){
+          that.comment = snap.val().comment;
+          that.longitude = snap.val().lon;
+          that.latitude = snap.val().lat;
+          console.log(that.latitude, snap.val().lat);
+          that.image = snap.val().image;
+          moment.locale('nl');
+          that.datum = moment(snap.val().tijd).format('dddd D MMMM, HH:mm');
+          that.resolve = true;
+        });
+
+        
+      }
+     
+
+    
+  });
+})();
+</script>

@@ -1,0 +1,61 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<dom-module id="file-upload">
+  <template>
+<link rel="stylesheet" href="file-upload.css">
+      <input type="file" name="File" id="file" on-change="setFiles">
+  </template>
+  </dom-module>
+  <script>
+    (function () {
+      'use strict';
+
+      var imgval;
+
+      Polymer({
+
+        is: 'file-upload',
+
+        properties: {
+          imgval: {
+            type: String,
+            notify: true,
+            observer: 'testObs'
+        }
+
+        },
+
+        ready: function(){
+          this.imgval = '';
+        },
+
+        testObs: function(){
+          console.log('imgval: ',this.imgval);
+        },
+
+        setFiles: function(){
+          //console.log('Set files started');
+          this.fileInput = this.$.file.files[0];
+          //this.imageType = /image.*/;
+          var that = this;
+          // if (this.fileInput.type.match(this.imageType)) {
+          //console.log('das godver een goeie image jong');
+          var reader = new FileReader();
+          //console.log('reader: ', reader);
+          reader.onload = function(e) {
+          //console.log(reader.result);]
+            //console.log('de reader wordt uitgevoerd');
+            that.imgval = reader.result;
+            //console.log(that.imgval);
+          }
+
+          reader.readAsDataURL(this.fileInput);
+                    // }
+
+        }
+        
+      });
+
+    })();
+  </script>
+

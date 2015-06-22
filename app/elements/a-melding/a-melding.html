@@ -1,0 +1,257 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
+<link rel="import" href="../../components/paper-input/paper-input.html">
+<link rel="import" href="../../components/paper-item/paper-item.html">
+<link rel="import" href="../../components/firebase-element/firebase.html">
+<link rel="import" href="../../components/firebase-element/firebase-collection.html">
+<link rel="import" href="../a-intro/a-intro.html">
+<link rel="import" href="../theme-style.html">
+<link rel="import" href="../../components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../components/paper-button/paper-button.html">
+<link rel="import" href="../../components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../../components/iron-selector/iron-selector.html">
+<link rel="import" href="../../components/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="../../components/iron-ajax/iron-ajax.html">
+<script src="../../components/lodash/lodash.js"></script>
+<script src="../../components/momentjs/moment.js"></script>
+<script src="../../components/momentjs/locale/nl.js"></script>
+<!-- <script src="https://cdn.firebase.com/libs/geofire/3.2.2/geofire.min.js"></script> 
+ --><script src="../../components/node-uuid/uuid.js"></script>  
+<link rel="import" href="../file-upload/file-upload.html">
+<link rel="import" href="../a-meldingitem/a-meldingitem.html">
+<link rel="import" href="../../components/firebase-element/firebase-collection.html">
+
+<dom-module id="a-melding">
+  <style>
+ :host {
+      @apply(--theme-main-font);
+      @apply(--layout-vertical);
+      @apply(--layout-center);
+      background-color: var(--theme2-main-color);
+      width: 100%;
+      min-height: 100%;
+    }
+
+    h1,h2,h3,h4 {
+      @apply(--theme-title-fonts);
+      margin: 0px;
+      padding: 0px;
+    }
+
+    h3 {
+      font-size: 20px;
+    }
+
+    h4 {
+      margin: 0px;
+      padding: 0px;
+      font-size: 14px;
+      color: #cccccc;
+    }
+
+    h1 {
+      font-size: 26px;
+    }
+
+    paper-button {
+      @apply(--theme-buttons);
+    }
+
+    paper-input-container{
+      --paper-input-container-focus-color:black;
+      background-color: white;
+      border-radius: 4px;
+    }
+
+
+
+/*      margin: 0px 0px 0px 0px;
+>>>>>>> origin/master
+      padding: 0px;
+      --paper-dialog-background-color: var(--theme2-main-color);
+      width: 50%;
+      height: 50%;
+<<<<<<< HEAD
+    }
+
+=======
+      position: fixed;
+*/
+    paper-dialog {
+      position: fixed;
+      --paper-dialog-background-color: var(--theme2-main-color);
+      height: 50%;
+      top: 20%;
+      left: 20%;
+      bottom: 20%;
+      right: 20%;
+      margin: 0px;
+      box-sizing: border-box;
+      padding: 5%;
+    }
+
+
+
+
+
+
+    .vertical {
+      @apply(--layout-vertical);
+    }
+
+    .horizontal {
+      @apply(--layout-horizontal);
+    }
+
+    .wrap {
+      @apply(--layout-wrap);
+    }
+
+    a-meldingitem {
+      border: 1px solid grey;
+      padding: 10px;
+    }
+
+  </style>
+  <template>
+
+    <iron-ajax
+    handle-as="json"
+    on-response="handleResponse"
+    debounce-duration="300"
+    id="ophaalkal"></iron-ajax>
+
+      <iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
+
+
+          <template is="dom-if" if="{{!locationpos}}">
+
+
+            <paper-dialog modal entry-animation="scale-up-animation" exit-animation="fade-out-animation" opened class="dialog">
+              <h2>Header</h2>
+              <p>
+                Je toestel zal je huidige locatie vragen. Op deze manier kunnen we bepalen op welke plaats de melding zich plaatsvindt.
+              </p>
+              <paper-button dialog-confirm on-tap="getLocation">Ok, ga door</paper-button>
+            </paper-dialog>
+          </template>
+
+          <template is="dom-if" if="{{locationpos}}">
+            <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
+            <paper-input-container>
+          <label>Opmerkingen?</label>
+          <input is="iron-input" bind-value="{{comment}}">
+<!-- >>>>>>> origin/master
+ -->            <button on-tap="saveIt">Versturen</button>
+
+          <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" order-by-child="key"></firebase-collection>
+
+          <template is="dom-repeat" items={{usermeldingen}} index-as="key">
+            <a-meldingitem key="{{item.key}}"></a-meldingitem>
+          </template>
+
+          <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
+          </template>
+
+      </div>
+
+</template>
+</dom-module>
+<script>
+(function() {
+
+  function showPosition(position) {
+    //    var that = this;
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    var event = new CustomEvent('gpsacquired', {'detail':{'longitude': longitude, 'latitude': latitude}});
+    window.dispatchEvent(event);
+    //console.log('heb positie: ', latitude, longitude);
+  };
+
+  Polymer({
+    is: 'a-melding',
+
+    properties: {
+      imageval: {
+        type: String
+      },
+      ophaal: {
+        type: Object
+      }
+    },
+
+    ready: function(){
+      this.locationpos = false;
+      this.getLocation();
+      var that = this;
+      window.addEventListener('gpsacquired', function(e){
+        console.log('has position', e.detail.longitude, e.detail.latitude);
+        that.locationpos = true;
+      });
+    },
+    // hier als er nog niets in localstorage zit
+
+    initializeDefault: function(){
+
+    },
+
+    getLocation: function() {
+      this.fblocation = 'https://blazing-fire-6426.firebaseio.com/ophaal/user/'+this.userid+'/';
+
+      if (navigator.geolocation) {
+        this.locpos = navigator.geolocation.getCurrentPosition(showPosition);
+        console.log(this.locpos);
+        this.locationpos = true;
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+    },
+
+    saveIt: function(){
+      this.getLocation();
+
+      if(this.userid==null){
+        this.userid = uuid.v1();
+      };
+
+      console.log('ik ga saven: ', longitude, latitude, this.imageval, this.comment);
+
+      var today = Date.now();
+
+      testFB = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/meldingen');
+
+      var userid = this.userid;
+
+      var testID = testFB.push({'lon':longitude, 'lat':latitude, 'image':this.imageval, 'comment':this.comment, 'tijd': today, 'user': userid });
+
+      var newKey = testID.key();
+
+      console.log(newKey);
+
+      //this.doGeofire(newKey, longitude, latitude);
+
+      var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid);
+
+      var usermeldingID = userMelding.push({'key': newKey });
+
+      this.imageval = null;
+      this.comment = '';
+
+    },
+
+    doGeofire: function(key, long, lat){
+      var firebaseRef = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/geopoints/');
+      var geoFire = new GeoFire(firebaseRef);
+      geoFire.set(key, [lat, long]).then(function() {
+        console.log("Provided key has been added to GeoFire");
+      }, function(Error) {
+        console.log("Error: " + error);
+      });
+    }
+
+  });
+})();
+</script>
