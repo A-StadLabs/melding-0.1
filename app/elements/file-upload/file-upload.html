@@ -1,10 +1,18 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../a-button/a-button.html">
 
 <dom-module id="file-upload">
   <template>
+  <style>
+    #file {
+      opacity: 0;
+    }
+  </style>
 <link rel="stylesheet" href="file-upload.css">
-      <button on-click="startFile">UP!</button>
-      <input type="file" name="File" id="file" on-change="setFiles" capture="camera" hidden>
+      
+      <a-button on-click="startFile">UP!</a-button>
+
+      <input type="file" name="File" id="file" on-change="setFiles" capture="camera">
   </template>
   </dom-module>
   <script>
@@ -27,7 +35,7 @@
         },
 
         startFile: function(){
-          
+          this.$.file.click();
         },
 
         ready: function(){
