@@ -106,6 +106,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       'neon-animation-finish': '_onNeonAnimationFinish'
     },
 
+    ready: function(){
+      this.playAnimation('entry');
+    },
+
     fadeIn: function() {
       // run scale-down-animation
       this.playAnimation('entry');
