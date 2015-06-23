@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../ons-animatie-uit.html">
 <link rel="import" href="../ons-animatie-thinking.html">
 
-<dom-module id="a-smallbutton">
+<dom-module id="a-choicebutton">
   <style>
     :host {
       display: block;
@@ -51,33 +51,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 #wit {
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 36px;
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  border: 2px solid white;
+}
+
+#nietwit {
+  background-color: rgba(255,255,255,0.1);
   border-radius: 35px;
   width: 70px;
   height: 70px;
   margin: auto;
-
 }
+
 
 
   </style>
   <template>
-    <div class="mainimgs" on-click="klik">
-          <img class="icon" id="drop" src="{{icon}}">
-
-    <template is="dom-if" if="{{disabled}}">
-    <div id="wit">
+    
+    <div class="mainimgs" on-click="toggleSelect">
+      <img class="icon" id="drop" src="{{icon}}">
+      <template is="dom-if" if="{{selected}}">
+        <div id="wit"></div>
+      </template>
+      <template is="dom-if" if="{{!selected}}">
+        <div id="nietwit"></div>
+      </template>
     </div>
-    </template>
-
-    </div>
-
+    
   </template>
 </dom-module>
 <script>
 (function() {
   Polymer({
-    is: 'a-smallbutton',
+    is: 'a-choicebutton',
 
     behaviors: [
       Polymer.NeonAnimationRunnerBehavior
@@ -98,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         notify: true
     },
 
-    disabled: {
+    selected: {
         type: Boolean,
         value: false,
         notify: true
@@ -142,12 +152,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
-    klik: function(){
-      this.fire('klik');
+    toggleSelect: function(){
+      this.selected =! this.selected;
+      console.log('ik ben ', this.selected);
+      this.fire('select', { 'detail':this.selected });
     },
 
     ready: function(){
-      this.playAnimation('entry');
+      //this.playAnimation('entry');
+      this.selected = false;
     },
 
     stateChanged: function(){
