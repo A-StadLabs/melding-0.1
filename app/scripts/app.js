@@ -44,6 +44,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     app.selected = 1;
   },
 
+  app.select = function(){
+
+    console.log('trigger select: ',this.select1, this.select2, this.select3);
+    if(this.select1||this.select2||this.select3==true){
+      app.itemselected = true;
+    } else {
+      app.itemselected = false;
+    }
+
+  },
+
   app._confirm = function(){
     app.selected = 2;
   },
@@ -51,6 +62,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app.askLocPerm = function(){
     this.buttonState = 'thinking';
     this.locationPerm = true;
+  },
+
+  app.verzenden = function(){
+    console.log('shit verzenden');
   },
 
   // Close drawer after menu item is selected if drawerPanel is narrow
