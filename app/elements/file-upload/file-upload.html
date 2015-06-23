@@ -30,7 +30,7 @@
       <input type="file" name="File" id="file" on-change="setFiles" capture="camera" accept="image/*" >
 
 <!--       Button is gecentreerd! Nu nog juiste functie meegeven? -->
-      <a-button icon="../../images/icon-img.svg" on-click="Doetiehet"></a-button>
+      <a-button icon="{{icon}}"></a-button>
       
 
 
@@ -61,6 +61,8 @@
 
         },
 
+    
+
         startFile: function(){
           openCam();
         },
@@ -78,6 +80,7 @@
 
         ready: function(){
           this.imgval = '';
+          this.icon = '../../images/icon-img.svg';
         },
 
         testObs: function(){
@@ -97,6 +100,8 @@
           //console.log(reader.result);]
             //console.log('de reader wordt uitgevoerd');
             that.imgval = reader.result;
+            that.icon = that.imgval;
+
             //console.log(that.imgval);
           }
 
