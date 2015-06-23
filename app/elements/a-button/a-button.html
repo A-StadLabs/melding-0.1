@@ -62,7 +62,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <div class="mainimgs">
-          <!-- Ge krijgt hier ne var {{size}} die is: 'small', 'medium', 'big'. -->
           <img class="icon" id="drop" src="{{icon}}">
     <div id="wit">
     </div>
@@ -96,11 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         notify: true
     },
 
-    size: {
-        type: String,
-        value: 'big',
-        notify: true
-    },
+    
 
     animationConfig: {
       value: function() {
