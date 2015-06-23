@@ -46,7 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.askLocPerm = function(){
     this.buttonState = 'thinking';
-    //this.locationPerm = true;
+    this.locationPerm = true;
   },
 
   // Close drawer after menu item is selected if drawerPanel is narrow
