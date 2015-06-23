@@ -9,13 +9,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/leaflet-map/leaflet-map.html">
+<link rel="import" href="../../bower_components/google-map/google-map.html">
 
 
 <dom-module id="a-showgeo">
   <style>
     :host {
       display: block;
+      height: 100%;
     }
 
     leaflet-map {
@@ -25,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <h1>Show geo</h1>
-    <leaflet-map longitude="{{longitude}}" latitude="{{latitude}}" zoom="12"></leaflet-map>
+    <google-map longitude="{{longitude}}" latitude="{{latitude}}" zoom="12"></google-map>
   </template>
 </dom-module>
 <script>
