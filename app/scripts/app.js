@@ -64,6 +64,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app.askLocPerm = function(){
     this.buttonState = 'thinking';
     this.locationPerm = true;
+    if(this.latitude){
+      this.selected = 1;
+    };
   },
 
   app.verzenden = function(){
@@ -71,7 +74,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     this.selected = 0;
     this.showBadge = true;
     this.buttonState = 'waiting';
-    this.locationPerm = false;
+    this.locationPerm;
+    this.select1 = false;
+    this.select2 = false;
+    this.select3 = false;
 
   },
 
