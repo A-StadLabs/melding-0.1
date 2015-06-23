@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../a-button/a-button.html">
+<link rel="import" href="../a-smallbutton/a-smallbutton.html">
 
 <dom-module id="file-upload">
   <template>
@@ -47,6 +48,7 @@
       <template is="dom-if" if="{{hasimage}}">
 
         <img src="{{newImage}}" />
+        <a-smallbutton icon="../../images/icon-OK.svg" state="waiting"></a-smallbutton>
 
       </template>
       </div>
