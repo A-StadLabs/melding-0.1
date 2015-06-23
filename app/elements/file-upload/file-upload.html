@@ -26,9 +26,17 @@
   cursor: pointer;
 
     }
+
+
+  .imagery img {
+    width: 80%;
+  }
+
+
   </style>
 <link rel="stylesheet" href="file-upload.css">
-      
+                <div class="imagery layout vertical center-center">
+
 
       <input type="file" name="File" id="file" on-change="setFiles" capture="camera" accept="image/*" >
 
@@ -36,8 +44,10 @@
       <a-button icon="{{icon}}" state="{{buttState}}" id="abutton"></a-button>
       
       <template is="dom-if" if="{{hasimage}}">
+
         <img src="{{newImage}}" />
       </template>
+      </div>
 
   </template>
   </dom-module>
