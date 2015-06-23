@@ -33,9 +33,11 @@
       <input type="file" name="File" id="file" on-change="setFiles" capture="camera" accept="image/*" >
 
 <!--       Button is gecentreerd! Nu nog juiste functie meegeven? -->
-      <a-button icon="{{icon}}" state="waiting"></a-button>
+      <a-button icon="{{icon}}" state="{{buttState}}" id="abutton"></a-button>
       
-
+      <template is="dom-if" if="{{hasimage}}">
+        <img src="{{newImage}}" />
+      </template>
 
   </template>
   </dom-module>
@@ -65,10 +67,14 @@
 
         ready: function(){
           this.imgval = '';
+          this.hasimage = false;
           this.icon = '../../images/icon-img.svg';
+          this.buttState = "waiting";
         },
 
         setFiles: function(){
+
+          //this.buttState = "thinking";
           //console.log('Set files started');
           this.fileInput = this.$.file.files[0];
           //this.imageType = /image.*/;
@@ -80,8 +86,11 @@
           reader.onload = function(e) {
           //console.log(reader.result);]
             //console.log('de reader wordt uitgevoerd');
-            that.imgval = reader.result;
-            that.icon = that.imgval;
+            that.$.abutton.hidden = true;
+            that.hasimage = true;
+            that.newImage = reader.result;
+            
+            //that.buttState = "waiting";
 
             //console.log(that.imgval);
           }
