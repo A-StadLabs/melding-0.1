@@ -84,15 +84,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     icon: {
         type: String,
         value: '',
-        notify: true,
         observer: 'hasvalue'
       },
 
     state: {
         type: String,
-        value: 'waiting',
-        notify: true,
-        observer: 'stateChanged'
+        value: '',
+        observer: 'stateChanged',
+        notify: true
     },
 
     animationConfig: {
@@ -103,19 +102,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             node: this.$.wit,
             timing: {duration: 750}
           },
-          'exit': {
-            name: 'ons-animatie-uit',
+          'thinking': {
+            name: 'scale-down-animation',
             node: this.$.wit,
             timing: {duration: 750}
           },
-          'thinking': {
-            name: 'scale-up-animation',
-            node: this,
-            timing: {duration: 700}
-          }
-          // provided by neon-animation/animations/scale-down-animation.html
-          
-        }    
+
+        }          
       }
     }
   },
@@ -125,39 +118,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       'neon-animation-finish': '_onNeonAnimationFinish'
     },
 
+    _onNeonAnimationFinish: function(){
+      this.checkWhattodo();
+    },
+
+    checkWhattodo: function(){
+      if(this.state=='waiting'){
+        this.playAnimation('entry');
+      } else {
+        this.playAnimation('thinking');
+      }
+    },
+
     ready: function(){
       this.playAnimation('entry');
     },
 
     stateChanged: function(){
-      console.log('button state changed');
-      this.playAnimation('thinking');
-    },
-
-    fadeIn: function() {
-      // run scale-down-animation
-      this.playAnimation('entry');
-      this.fader = 'in';
-    },
-
-    fadeOut: function() {
-      // run scale-down-animation
-      this.playAnimation('exit');
-      this.fader = 'out';
-    },
-
-    animate: function(){
-      console.log('start animatie');
-      this.fadeIn();
-    },
-
-    _onNeonAnimationFinish: function() {
-         if(this.fader=='in'){
-        this.fadeOut();
-      } else {
-        this.fadeIn();
-      }
+      console.log('button state changed: ', this.state);
     }
+
+    
   });
 })();
 </script>

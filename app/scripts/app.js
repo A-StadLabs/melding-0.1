@@ -29,12 +29,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // See https://github.com/Polymer/polymer/issues/1381
   window.addEventListener('WebComponentsReady', function() {
     // imports are loaded and elements have been registered
+    console.log('web components are ready');
   });
 
   app.ready = function(){
     this.locationPerm = false;
-        this.buttonstate = 'thinking';
-
+    this.buttonState = 'waiting';
   },
 
   app._next = function(){
@@ -45,8 +45,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   },
 
   app.askLocPerm = function(){
-    this.buttonstate = 'waiting';
-    this.locationPerm = true;
+    this.buttonState = 'thinking';
+    //this.locationPerm = true;
   },
 
   // Close drawer after menu item is selected if drawerPanel is narrow
