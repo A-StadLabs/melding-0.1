@@ -36,6 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   },
 
   app._next = function(){
+    console.log('next function activated');
     app.entryAnimation = 'slide-from-right-animation';
     app.exitAnimation = 'slide-left-animation';
     app.selected = 1;
