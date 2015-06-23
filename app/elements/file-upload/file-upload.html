@@ -33,7 +33,7 @@
       <input type="file" name="File" id="file" on-change="setFiles" capture="camera" accept="image/*" >
 
 <!--       Button is gecentreerd! Nu nog juiste functie meegeven? -->
-      <a-button icon="{{icon}}"></a-button>
+      <a-button icon="{{icon}}" state="{{buttonState}}"></a-button>
       
 
 
@@ -58,36 +58,14 @@
         properties: {
           imgval: {
             type: String,
-            notify: true,
-            observer: 'testObs'
+            notify: true
         }
 
         },
 
-    
-
-        startFile: function(){
-          openCam();
-        },
-
-
-
-/*testfunctie van Bennisan, wegsmijte die hap */
-    Doetiehet: function() {
-      console.log('Nou!!!!!!!!!!!!!!!!!!!!!!');
-    },
-
-
-
-
-
         ready: function(){
           this.imgval = '';
           this.icon = '../../images/icon-img.svg';
-        },
-
-        testObs: function(){
-          console.log('imgval: ',this.imgval);
         },
 
         setFiles: function(){
