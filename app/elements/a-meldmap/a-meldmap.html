@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../../bower_components/leaflet-map/leaflet-map.html">
+<link rel="import" href="../../bower_components/google-map/google-map.html">
 
 
 <link rel="import" href="../../bower_components/firebase-element/firebase.html">
@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-right: 6px;
     }
 
-    leaflet-map {
+    google-map {
       height: 100%;
       width: 100%;
     }
@@ -55,16 +55,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" log></firebase-collection>
  -->
- <leaflet-map longitude="77.2" latitude="28.4" zoom="12" class="flex"></leaflet-map>
+
      
-  <!-- <leaflet-map zoom="12" fitToMarkers latitude="{{latitude}}" longitude="{{longitude}}">
-   <leaflet-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{latitude}}" longitude="{{longitude}}">test
-      </leaflet-marker> -->
-  <!-- <template is="dom-repeat" items="{{datameld}}">
-      <leaflet-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{item.lat}}" longitude="{{item.lon}}">
-      </leaflet-marker>
+  <google-map zoom="12" fitToMarkers latitude="{{latitude}}" longitude="{{longitude}}">
+     <google-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{latitude}}" longitude="{{longitude}}">
+      </google-marker>
+<!--   <template is="dom-repeat" items="{{datameld}}">
+      <google-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{item.lat}}" longitude="{{item.lon}}">
+      </google-marker>
 </template> -->
-<!-- </leaflet-map> -->
+</google-map>
     <!-- <template is="dom-repeat" items="{{datameld}}">
       <p>{{item.comment}}</p>
     </template> -->
@@ -100,7 +100,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
       ready: function(){
-        //console.log('i has streets loaded');
+        this.initializeMap();
+      },
+
+      initializeMap: function(){
+        
       },
 
       hasvalue: function(){

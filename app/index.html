@@ -99,7 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             entry-animation="scale-up-animation"
             exit-animation="scale-down-animation">
 
-            <neon-animatable>
+            <neon-animatable id="0">
             <div class="canvas blueback flex">
 <!--               <h1>Hier locatie vragen<span>{{longitude}}</span></h1> -->
               <!-- <img class="mainimgs" src="images/icon-loc2.svg" on-click="askLocPerm">
@@ -131,7 +131,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             </neon-animatable> -->
 
-            <neon-animatable>
+            <neon-animatable id="1">
                         <div class="canvas blueback flex">
 
               <a-melding userid="{{userid}}" latitude="{{latitude}}" longitude="{{longitude}}" fileready="{{verder}}"></a-melding>
@@ -147,8 +147,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             </neon-animatable>
 
-            <neon-animatable>
-              <a-meldmap latitude="{{latitude}}" longitude="{{longitude}}"></a-meldmap>
+            <neon-animatable id="2">
+              <a-meldmap id="map" latitude="{{latitude}}" longitude="{{longitude}}"></a-meldmap>
             </neon-animatable>
 
           </neon-animated-pages>
