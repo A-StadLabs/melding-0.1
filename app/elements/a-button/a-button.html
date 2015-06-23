@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../ons-animatie-in.html">
 <link rel="import" href="../ons-animatie-uit.html">
+<link rel="import" href="../ons-animatie-thinking.html">
 
 <dom-module id="a-button">
   <style>
@@ -61,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <div class="mainimgs">
-          <img class="icon" src="{{icon}}">
+          <img class="icon" id="drop" src="{{icon}}">
     <div id="wit">
     </div>
 
@@ -103,9 +104,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             timing: {duration: 1200}
           },
           'thinking': {
-            name: 'scale-down-animation',
-            node: this,
-            timing: {duration: 750}
+            name: 'ons-animatie-thinking',
+            node: this.$.drop,
+            timing: {duration: 1200}
           },
 
         }          
