@@ -31,7 +31,11 @@
 
   .imagery img {
     max-width: 80%;
-    max-height: 500px; 
+    max-height: 400px; 
+  }
+
+  .topmargin {
+    margin-top: 30px;
   }
 
 
@@ -48,7 +52,10 @@
       <template is="dom-if" if="{{hasimage}}">
 
         <img src="{{newImage}}" />
+        <div class="topmargin layout horizontal center-center">
+        <a-smallbutton icon="../../images/icon-NO.svg" state="waiting"></a-smallbutton>
         <a-smallbutton icon="../../images/icon-OK.svg" state="waiting"></a-smallbutton>
+        </div>
 
       </template>
       </div>
