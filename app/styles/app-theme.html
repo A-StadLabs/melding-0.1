@@ -21,41 +21,73 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   /* Application theme */
 
+
+
+
+/* GENERAL  */
+
+
   :root {
     --primary-blue: #3A52F0;
 
-      font-family: 'Open Sans', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
 
-h1 {
+  .canvas {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 6%;
+    @apply(--layout-vertical);
+    @apply(--layout-center-center);
+  }
+
+  paper-toolbar {
+    background-color: var(--primary-blue);
+  }
+
+  neon-animatable {
+    min-height: 91%;
+  }
+
+
+  neon-animated-pages {
+    min-height: 91%;
+  }
+
+
+
+
+/* ALL BACKGROUNDS */
+
+  .blueback {
+    background-color: var(--primary-blue);
+    color: white;
+  }
+
+
+
+/* GENERAL TYPO  */
+
+    h1,h2 {
       font-weight: 300;
       -webkit-font-smoothing: antialiased;
+      line-height: 125%;
     }
 
-.canvas {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 6%;
-  @apply(--layout-vertical);
-  @apply(--layout-center-center);
-}
+    h3 {
+      font-weight: 800;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 125%;
+    }
 
 
-.blueback {
-  background-color: var(--primary-blue);
-  color: white;
-}
-
-  
-  paper-drawer-panel {
-    height: 100%;
-  }
 
 
+/* ALL MATTERS BIGBTN */
 
 .bigbtns {
   font-family: 'Open Sans', sans-serif;
@@ -77,28 +109,42 @@ h1 {
 }
 
 
-.drawerbtn {
-  cursor: pointer;
-}
-
-
-paper-toolbar {
-  background-color: var(--primary-blue);
-}
-
-
-neon-animatable {
-  min-height: 91%;
-}
 
 
 
-neon-animated-pages {
-  min-height: 91%;
-}
+/* ALL MATTERS DRAWER */
 
+  .drawerbtn {
+    cursor: pointer;
+  }
 
+  paper-drawer-panel {
+    height: 100%;
+  }
 
+  .drawer {
+    @apply(--layout-vertical);
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+  .drawer-icons {
+    width: 50px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 25px;
+    margin: 2px 16px 0px 0px;
+  }
+  
+  p {
+    font-size: 14px;
+    margin: 0px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 140%;
+    }
+
+  .drawerpart {
+  margin: 10px 0px 10px 0px;
+  }
 
 
   /* Material Design Adaptive Breakpoints */

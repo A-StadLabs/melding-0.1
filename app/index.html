@@ -59,9 +59,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
 
-  <paper-drawer-panel id="paperDrawerPanel" force-narrow="true">
-      <div drawer>
-        <span>{{userid}}</span>
+  <paper-drawer-panel id="paperDrawerPanel" force-narrow="true" >
+      <div drawer class="blueback drawer">
+        <h2>Gebruik deze app om sluikstort te melden.</h2>
+
+        <div class="layout horizontal start drawerpart">
+          <img class="drawer-icons" src="../../images/icon-loc2.svg">
+          <p>De app zal je om je huidige locatie vragen.</p>
+        </div>
+
+
+        <div class="layout horizontal start drawerpart">
+          <img class="drawer-icons" src="../../images/icon-img.svg">
+          <p>Trek een foto van het te melden vuil.</p>
+        </div>
+
+        <div class="layout horizontal start drawerpart">
+          <img class="drawer-icons" src="../../images/icon-img.svg">
+          <p>Voeg nog een extra opmerking toe.</p>
+        </div>
+
+<!--         <small>{{userid}}</small> -->
 
       </div>
 
