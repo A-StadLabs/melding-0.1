@@ -29,7 +29,8 @@
 
 
   .imagery img {
-    width: 80%;
+    max-width: 80%;
+    max-height: 500px; 
   }
 
 
@@ -46,6 +47,7 @@
       <template is="dom-if" if="{{hasimage}}">
 
         <img src="{{newImage}}" />
+
       </template>
       </div>
 
