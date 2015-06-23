@@ -69,6 +69,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     console.log('shit verzenden');
     this.selected = 0;
     this.showBadge = true;
+    this.buttonState = 'waiting';
+    this.locationPerm = false;
+
   },
 
   // Close drawer after menu item is selected if drawerPanel is narrow
