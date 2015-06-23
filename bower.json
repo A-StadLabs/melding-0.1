@@ -10,7 +10,10 @@
     "leaflet-map": "leaflet-extras/leaflet-map#~1.0.1",
     "node-uuid": "~1.4.3",
     "firebase-element": "GoogleWebComponents/firebase-element#~1.0.1",
-    "momentjs": "~2.10.3"
+    "momentjs": "~2.10.3",
+    "npm": "~2.12.0",
+    "install": "~1.0.4",
+    "webcomponent-qr-code": "~0.1.7"
   },
   "devDependencies": {
     "web-component-tester": "*",
