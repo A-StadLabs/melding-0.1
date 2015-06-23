@@ -25,13 +25,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     google-map {
+<<<<<<< Updated upstream
 
+=======
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+>>>>>>> Stashed changes
       }
 
     
   </style>
   <template>
+<<<<<<< Updated upstream
     <google-map longitude="{{longitude}}" latitude="{{latitude}}" zoom="12"></google-map>
+=======
+    <h1>Show geo</h1>
+    <google-map longitude="{{longitude}}" latitude="{{latitude}}" zoom="16">
+      <google-map-marker longitude="{{longitude}}" latitude="{{latitude}}"
+      draggable="false" title="hier"></google-map-marker>
+    </google-map>
+>>>>>>> Stashed changes
   </template>
 </dom-module>
 <script>
