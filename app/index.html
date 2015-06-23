@@ -109,9 +109,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!--               <a-button icon="../../images/icon-loc2.svg" state="{{buttonstate}}" on-click="askLocPerm"></a-button> -->
               <a-button icon="../../images/icon-loc2.svg" on-click="askLocPerm" state="{{buttonState}}" size="big"></a-button>
 
-              
+
               <template is="dom-if" if="{{showBadge}}">
-                <a-smallbutton disabled="{{itemselected}}" icon="../../images/icon-OK.svg" state="waiting"></a-smallbutton>
+                <a-smallbutton icon="../../images/icon-OK.svg" state="waiting"></a-smallbutton>
               </template>
 
               <template is="dom-if" if="{{locationPerm}}">
@@ -139,15 +139,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <neon-animatable>
                         <div class="canvas blueback flex">
 
-              <a-melding userid="{{userid}}" latitude="{{latitude}}" longitude="{{longitude}}" fileready="{{verder}}"></a-melding>
+              <a-melding userid="{{userid}}" latitude="{{latitude}}" longitude="{{longitude}}" on-fileready="_confirm"></a-melding>
               
-              <template is="dom-if" if="{{verder}}">
-              <div class="topmargin layout horizontal center-center">
-        <a-smallbutton icon="../../images/icon-NO.svg" state="waiting"></a-smallbutton>
-        <a-smallbutton on-click="_confirm" icon="../../images/icon-OK.svg" state="waiting"></a-smallbutton>
-        </div>
-               
-              </template>
+             
                           </div>
 
             </neon-animatable>
