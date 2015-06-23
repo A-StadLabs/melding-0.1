@@ -54,8 +54,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" log></firebase-collection>
 
      
-  <leaflet-map zoom="12" fitToMarkers latitude="51.2300769" longitude="4.386597">
-   <leaflet-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="51.2300769" longitude="4.386597">test
+  <leaflet-map zoom="12" fitToMarkers latitude="{{latitude}}" longitude="{{longitude}}">
+   <leaflet-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{latitude}}" longitude="{{longitude}}">test
       </leaflet-marker>
   <!-- <template is="dom-repeat" items="{{datameld}}">
       <leaflet-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{item.lat}}" longitude="{{item.lon}}">
@@ -76,7 +76,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'a-meldmap',
 
     properties: {
-      foo: {
+      latitude: {
+        type: String,
+        value: '',
+        notify: true,
+        observer: 'hasvalue'
+      },
+      longitude: {
+        type: String,
+        value: '',
+        notify: true,
+        observer: 'hasvalue'
+      },
+      key: {
         type: String,
         value: '',
         notify: true,

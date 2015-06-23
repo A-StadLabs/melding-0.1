@@ -152,11 +152,11 @@ a-button {
           </paper-input-container>
          <button on-tap="saveIt">Versturen</button> -->
 
-          <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" order-by-child="key"></firebase-collection>
+          <!-- <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" order-by-child="key"></firebase-collection>
 
           <template is="dom-repeat" items={{usermeldingen}} index-as="key">
             <a-meldingitem key="{{item.key}}"></a-meldingitem>
-          </template>
+          </template> -->
 
           <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
 
@@ -193,10 +193,24 @@ a-button {
       longitude: {
         type: String,
         notify: true
+      },
+
+      fileready: {
+        type: Boolean,
+        notify: true
       }
     },
 
     ready: function(){
+
+      this.fileready = false;
+
+      var that = this;
+
+      this.$.imageupload.addEventListener('imageReady', function(){
+        console.log('i haz image');
+        that.fileready = true;
+      });
       
     },
     // hier als er nog niets in localstorage zit

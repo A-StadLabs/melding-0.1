@@ -44,6 +44,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     app.selected = 1;
   },
 
+  app._confirm = function(){
+    app.selected = 2;
+  },
+
   app.askLocPerm = function(){
     this.buttonState = 'thinking';
     this.locationPerm = true;

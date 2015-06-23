@@ -134,14 +134,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <neon-animatable>
                         <div class="canvas blueback flex">
 
-              <a-melding userid="{{userid}}" latitude="{{latitude}}" longitude="{{longitude}}"></a-melding>
+              <a-melding userid="{{userid}}" latitude="{{latitude}}" longitude="{{longitude}}" fileready="{{verder}}"></a-melding>
+              
+              <template is="dom-if" if="{{verder}}">
+                <a-smallbutton on-click="_confirm" icon="../../images/icon-OK.svg" state="waiting"></a-smallbutton>
+              </template>
                           </div>
 
             </neon-animatable>
 
             <neon-animatable>
-              <h1>3!</h1>
-              <a href="users">Users</a>
+              <a-meldmap latitude="{{latitude}}" longitude="{{longitude}}"></a-meldmap>
             </neon-animatable>
 
           </neon-animated-pages>
