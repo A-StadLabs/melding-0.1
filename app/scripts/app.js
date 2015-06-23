@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     console.log('next function activated');
     // app.entryAnimation = 'fade-in-animation';
     // app.exitAnimation = 'fade-out-animation';
-    app.selected = 1;
+    app.selected = 2;
   },
 
   app._confirm = function(){

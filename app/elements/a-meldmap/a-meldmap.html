@@ -24,6 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: block;
       margin: 30px 0px 0px 0px;
       height: 100%;
+      width: 100%;
 
     }
 
@@ -41,8 +42,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     leaflet-map {
-      height: 100vh;
-      width: 100vw;
+      height: 100%;
+      width: 100%;
     }
 
   </style>
@@ -52,17 +53,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           location="https://ophaal.firebaseio.com/meldingen"
           data="{{datameld}}" log></firebase-element> -->
 
-    <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" log></firebase-collection>
-
+    <!-- <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" log></firebase-collection>
+ -->
+ <leaflet-map longitude="77.2" latitude="28.4" zoom="12" class="flex"></leaflet-map>
      
-  <leaflet-map zoom="12" fitToMarkers latitude="{{latitude}}" longitude="{{longitude}}">
+  <!-- <leaflet-map zoom="12" fitToMarkers latitude="{{latitude}}" longitude="{{longitude}}">
    <leaflet-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{latitude}}" longitude="{{longitude}}">test
-      </leaflet-marker>
+      </leaflet-marker> -->
   <!-- <template is="dom-repeat" items="{{datameld}}">
       <leaflet-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{item.lat}}" longitude="{{item.lon}}">
       </leaflet-marker>
 </template> -->
-</leaflet-map>
+<!-- </leaflet-map> -->
     <!-- <template is="dom-repeat" items="{{datameld}}">
       <p>{{item.comment}}</p>
     </template> -->
