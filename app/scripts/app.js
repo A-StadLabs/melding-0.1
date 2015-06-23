@@ -36,6 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     this.locationPerm = false;
     this.buttonState = 'waiting';
     this.showBadge = false;
+    app.selected = 0;
   },
 
   app._next = function(){

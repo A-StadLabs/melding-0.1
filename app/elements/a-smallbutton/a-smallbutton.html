@@ -32,6 +32,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 }
 
+.mainimgsdis {
+/*  background-color: rgba(255,255,255,0.15);*/
+  border-radius: 35px;
+  width: 70px;
+  height: 70px;
+
+  opacity: 0.2;
+
+}
+
 
 
 .mainimgs img {
@@ -62,15 +72,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </style>
   <template>
+  <div>
+    <template is="dom-if" if="{{disabled}}">
     <div class="mainimgs" on-click="klik">
           <img class="icon" id="drop" src="{{icon}}">
-
-    <template is="dom-if" if="{{disabled}}">
-    <div id="wit">
+    <div id="wit"></div>
     </div>
     </template>
-
+    <template is="dom-if" if="{{!disabled}}">
+    <div class="mainimgsdis" on-click="klik">
+          <img class="icon" id="drop" src="{{icon}}">
+    <div id="wit"></div>
     </div>
+    </template>
+  </div>
 
   </template>
 </dom-module>
@@ -100,7 +115,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     disabled: {
         type: Boolean,
-        value: false,
+        value: true,
         notify: true
     },
 
@@ -148,6 +163,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     ready: function(){
       this.playAnimation('entry');
+      this.disabled = false;
     },
 
     stateChanged: function(){
