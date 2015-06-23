@@ -26,12 +26,16 @@
 <dom-module id="a-melding">
   <style>
  :host {
-      @apply(--theme-main-font);
+/*      @apply(--theme-main-font);
       @apply(--layout-vertical);
       @apply(--layout-center);
       background-color: var(--theme2-main-color);
       width: 100%;
-      min-height: 100%;
+      min-height: 100%;*/
+            @apply(--layout-vertical);
+      @apply(--layout-center-center);
+
+
     }
 
     h1,h2,h3,h4 {
@@ -114,6 +118,20 @@
       padding: 10px;
     }
 
+
+
+
+    file-upload {
+    z-index: 999;  
+
+    }
+
+a-button {
+  z-index: 0;
+}
+
+
+
   </style>
   <template>
 
@@ -124,14 +142,17 @@
     id="ophaalkal"></iron-ajax>
 
       <iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
+      
+      <div>
+        <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
+      </div>
 
-            <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
-            
-            <paper-input-container>
+
+<!--             <paper-input-container>
           <label>Opmerkingen?</label>
           <input is="iron-input" bind-value="{{comment}}">
           </paper-input-container>
-         <button on-tap="saveIt">Versturen</button>
+         <button on-tap="saveIt">Versturen</button> -->
 
           <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" order-by-child="key"></firebase-collection>
 
@@ -197,6 +218,7 @@
         console.log("Geolocation is not supported by this browser.");
       }
     },
+
 
     saveIt: function(){
 
