@@ -61,8 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <paper-drawer-panel id="paperDrawerPanel" force-narrow="true">
       <div drawer>
-        <span>{{userid}}</span>
-
+      <qr-code data="{{userid}}" format="svg" modulesize="3" margin="0"></qr-code>
       </div>
 
           <div main class="blueback" >
