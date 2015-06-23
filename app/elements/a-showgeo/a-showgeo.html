@@ -16,17 +16,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
-      height: 100%;
+                border-radius: 100px;
     }
 
-    leaflet-map {
-        height: 100%;
+    google-map {
+        height: 200px;
+                width: 200px;
+                border-radius: 100px;
+
       }
+     .doemaarrond {
+                border-radius: 100px;
+                border: 1px solid yellow;
+     } 
     
   </style>
   <template>
-    <h1>Show geo</h1>
+  <div class="doemaarrond">
     <google-map longitude="{{longitude}}" latitude="{{latitude}}" zoom="12"></google-map>
+  </div>
   </template>
 </dom-module>
 <script>
