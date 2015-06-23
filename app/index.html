@@ -135,20 +135,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div class="canvas blueback flex">
 
               <a-melding userid="{{userid}}" latitude="{{latitude}}" longitude="{{longitude}}" fileready="{{verder}}"></a-melding>
-              
+<!--               
               <template is="dom-if" if="{{verder}}">
               <div class="topmargin layout horizontal center-center">
         <a-smallbutton icon="../../images/icon-NO.svg" state="waiting"></a-smallbutton>
         <a-smallbutton on-click="_confirm" icon="../../images/icon-OK.svg" state="waiting"></a-smallbutton>
         </div>
                
-              </template>
+              </template> -->
                           </div>
 
             </neon-animatable>
 
             <neon-animatable>
+            <div class="canvas">
                 <a-button icon="../../images/icon-OK.svg" state="waiting"></a-button>
+                          </div>
+
             </neon-animatable>
 
           </neon-animated-pages>
