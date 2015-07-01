@@ -22,7 +22,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
     }
 
-
 .mainimgs {
 /*  background-color: rgba(255,255,255,0.15);*/
   border-radius: 100px;
@@ -30,8 +29,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   height: 200px;
 
 }
-
-
 
 .mainimgs img {
   width: 200px;
@@ -47,28 +44,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   position: absolute;
 }
 
-
-
 #wit {
   background-color: rgba(255,255,255,0.15);
   border-radius: 100px;
   width: 200px;
   height: 200px;
   margin: auto;
-
 }
-
 
   </style>
   <template>
     <div class="mainimgs">
-          <img class="icon" id="drop" src="{{icon}}">
-    <div id="wit">
+      <img class="icon" id="drop" src="{{icon}}">
+      <div id="wit"></div>
     </div>
-
-
-    </div>
-
   </template>
 </dom-module>
 <script>
@@ -82,39 +71,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
 
-    icon: {
-        type: String,
-        value: '',
-        observer: 'hasvalue'
+      icon: {
+          type: String,
+          value: '',
+          observer: 'hasvalue'
+        },
+
+      state: {
+          type: String,
+          value: '',
+          observer: 'stateChanged',
+          notify: true
       },
 
-    state: {
-        type: String,
-        value: '',
-        observer: 'stateChanged',
-        notify: true
-    },
-
-    
-
-    animationConfig: {
-      value: function() {
-        return {
-          'entry': {
-            name: 'ons-animatie-in',
-            node: this.$.wit,
-            timing: {duration: 1200}
-          },
-          'thinking': {
-            name: 'ons-animatie-thinking',
-            node: this.$.drop,
-            timing: {duration: 1200}
-          },
-
-        }          
+      animationConfig: {
+        value: function() {
+          return {
+            'entry': {
+              name: 'ons-animatie-in',
+              node: this.$.wit,
+              timing: {duration: 1200}
+            },
+            'thinking': {
+              name: 'ons-animatie-thinking',
+              node: this.$.drop,
+              timing: {duration: 12000}
+            },
+          }          
+        }
       }
-    }
-  },
+    },
 
     listeners: {
     // this event is fired when the animation finishes
@@ -142,7 +128,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     stateChanged: function(){
       console.log('button state changed: ', this.state);
     }
-
     
   });
 })();

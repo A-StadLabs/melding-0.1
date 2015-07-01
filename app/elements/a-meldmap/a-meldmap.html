@@ -41,8 +41,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-right: 6px;
     }
 
+    #michael {
+      height: 50%;
+    }
+
     google-map {
-      height: 100%;
+      height: 50%;
       width: 100%;
     }
 
@@ -57,17 +61,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           location="https://ophaal.firebaseio.com/meldingen"
           data="{{datameld}}" log></firebase-element> -->
 
-    <!-- <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" log></firebase-collection>
- -->
+    <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" log></firebase-collection>
+<div id="michael">
+<h1> Stuff </h1>
+ <template is="dom-repeat" items="{{datameld}}">
+      <p>latitude="<span>{{item.lat}}</span>"</p>
+</template>
+</div>
 
      
-  <google-map zoom="12" fitToMarkers latitude="{{latitude}}" longitude="{{longitude}}">
+  <google-map zoom="9" fitToMarkers latitude="{{latitude}}" longitude="{{longitude}}">
      <google-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{latitude}}" longitude="{{longitude}}">
       </google-marker>
-<!--   <template is="dom-repeat" items="{{datameld}}">
+  <template is="dom-repeat" items="{{datameld}}">
       <google-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{item.lat}}" longitude="{{item.lon}}">
       </google-marker>
-</template> -->
+</template>
 </google-map>
     <!-- <template is="dom-repeat" items="{{datameld}}">
       <p>{{item.comment}}</p>
@@ -90,10 +99,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         observer: 'hasvalue'
       },
       longitude: {
-        type: String,
-        value: '',
-        notify: true,
-        observer: 'hasvalue'
+        type: Number
+      },
+      latitude: {
+        type: Number
       },
       key: {
         type: String,

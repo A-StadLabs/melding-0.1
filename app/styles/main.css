@@ -13,3 +13,10 @@ body {
   color: #333;
 }
 
+.tijdelijk {
+	height: 50%;
+}
+
+google-map {
+	height: 50%;
+}

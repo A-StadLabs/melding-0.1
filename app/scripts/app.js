@@ -34,15 +34,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.ready = function(){
     this.locationPerm = false;
+    this.hasdata = null;
     this.buttonState = 'waiting';
     this.showBadge = false;
     app.selected = 0;
+    //app.fblocation = 'https://blazing-fire-6426.firebaseio.com/ophaal/user/'+app.userid+'/';
+    
+  },
+
+  app.handleResponse = function(e){
+    var yo = e.detail.response;
+    this.datameld = [];
+    for (var i = yo.length - 1; i >= 0; i--) {
+      console.log(yo[i]);
+    };
+  };
+
+  app.ondata = function(){
+    console.log('firebase is heere');
   },
 
   app._next = function(){
     console.log('next function activated');
-    // app.entryAnimation = 'fade-in-animation';
-    // app.exitAnimation = 'fade-out-animation';
     app.selected = 1;
   },
 
@@ -79,6 +92,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     this.select2 = false;
     this.select3 = false;
 
+    if(this.userid==null){
+      this.userid = uuid.v1();
+    };
+
+    console.log('ik ga saven: ', this.longitude, this.latitude, this.filedata);
+
+    var today = Date.now();
+
+    var testFB = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/meldingen');
+
+    var userid = this.userid;
+
+    var testID = testFB.push({'lon':this.longitude, 
+                              'lat':this.latitude, 
+                              'image':this.filedata, 
+                              'tijd': today, 
+                              'user': userid,
+                               'tags': { '1': this.select1, '2': this.select2, '3': this.select3 }
+                             });
+
+    var newKey = testID.key();
+
+    console.log(newKey);
+
+    var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid);
+
+    var usermeldingID = userMelding.push({'key': newKey });
+
+    this.imageval = null;
+
+    this.comment = '';
+
+  },
+
+  app.refreshMap = function(){
+    console.log('click refresh');
+    var gmap = document.getElementById('gmap');
+    console.log(gmap);
+    gmap._updateMarkers();
   },
 
   // Close drawer after menu item is selected if drawerPanel is narrow

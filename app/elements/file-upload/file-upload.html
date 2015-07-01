@@ -77,7 +77,6 @@
         },
 
         ready: function(){
-          this.imgval = '';
           this.hasimage = false;
           this.icon = '../../images/icon-img.svg';
           this.buttState = "waiting";
@@ -96,15 +95,15 @@
           //console.log('reader: ', reader);
           reader.onload = function(e) {
           //console.log(reader.result);]
-            //console.log('de reader wordt uitgevoerd');
+            console.log('de reader wordt uitgevoerd');
             //that.$.abutton.hidden = true;
             that.hasimage = true;
-            that.newImage = reader.result;
-            that.fire('imageReady');
+            that.imgval = reader.result;
+            that.fire('imageReady', {'detail': reader.result});
             
             //that.buttState = "waiting";
 
-            //console.log(that.imgval);
+            console.log(that.imgval);
           }
 
           reader.readAsDataURL(this.fileInput);

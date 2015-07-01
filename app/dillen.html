@@ -1,0 +1,118 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Polymer Starter Kit" />
+  <title>Meldingsapp</title>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#303F9F">
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Tile color for Win8 -->
+  <meta name="msapplication-TileColor" content="#3372DF">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Polymer Starter Kit">
+  <link rel="icon" sizes="192x192" href="images/touch/favicon-01.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+  <link rel="apple-touch-icon" href="images/touch/favicon-01.png">
+
+  <!-- Tile icon for Win8 (144x144) -->
+  <meta name="msapplication-TileImage" content="images/touch/favicon-01.png">
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild-->
+
+  <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- endbuild -->
+
+  <script src="http://alabstore.herokuapp.com/dpd.js"></script>
+
+  
+
+  <!-- will be replaced with elements/elements.vulcanized.html -->
+  <link rel="import" href="elements/elements.html">
+  <!-- endreplace-->
+</head>
+
+<body unresolved class="fullbleed layout vertical">
+  <span id="browser-sync-binding"></span>
+  <template is="dom-bind" id="app">
+<!-- 
+  <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" on-data="ondata" log></firebase-collection>
+ -->
+  <button on-click="refreshMap">map</button>
+
+  <iron-ajax
+    auto
+    url="https://a-store.herokuapp.com/meldingen"
+    handle-as="json"
+    on-response="handleResponse"
+    debounce-duration="3000"></iron-ajax>
+
+  <leaflet-map>
+    <leaflet-geolocation on-locationfound="_next" enable-high-accuracy
+      latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
+    </leaflet-geolocation>
+  </leaflet-map>
+
+  <div class="tijdelijk">
+
+  <template is="dom-repeat" items="{{datameld}}" index-as="guy">
+      <div>{{item}}</div>
+      <!-- <google-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{item.lon}}" longitude="{{item.lat}}">
+      </google-marker> -->
+  </template>
+
+  </div>
+
+  <template is="dom-if" if="{{datameld}}">
+
+  <google-map fitToMarkers latitude="{{latitude}}" longitude="{{longitude}}" min-zoom="2" max-zoom="11" language="en" id="gmap">
+    
+   <template is="dom-repeat" items="{{datameld}}">
+
+   <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}" title="Go Giants!" draggable="true">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/San_Francisco_Giants_Cap_Insignia.svg/200px-San_Francisco_Giants_Cap_Insignia.svg.png" />
+    </google-map-marker>
+      <!-- <google-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{item.lon}}" longitude="{{item.lat}}">
+      </google-marker> -->
+  </template>
+  
+</google-map>
+
+</template>
+
+
+  </template>
+
+  <!-- build:js scripts/app.js -->
+  <script src="scripts/app.js"></script>
+  <!-- endbuild-->
+</body>
+
+</html>

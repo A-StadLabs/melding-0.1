@@ -173,9 +173,11 @@ a-button {
     is: 'a-melding',
 
     properties: {
-      imageval: {
-        type: String
+      filedata: {
+        type: String,
+        notify: true
       },
+
       ophaal: {
         type: Object
       },
@@ -207,12 +209,12 @@ a-button {
 
       var that = this;
 
-      this.$.imageupload.addEventListener('imageReady', function(){
-        console.log('i haz image');
+      this.$.imageupload.addEventListener('imageReady', function(e){
+        console.log('i haz image', e.detail);
         that.fileready = true;
-        that.fire('fileready');
+        that.filedata = e.detail;
+        that.fire('fileready');       
       });
-      
     },
     // hier als er nog niets in localstorage zit
 
@@ -233,36 +235,36 @@ a-button {
     },
 
 
-    saveIt: function(){
+    // saveIt: function(){
 
-      if(this.userid==null){
-        this.userid = uuid.v1();
-      };
+    //   if(this.userid==null){
+    //     this.userid = uuid.v1();
+    //   };
 
-      console.log('ik ga saven: ', this.longitude, this.latitude, this.imageval, this.comment);
+    //   console.log('ik ga saven: ', this.longitude, this.latitude, this.imageval, this.comment);
 
-      var today = Date.now();
+    //   var today = Date.now();
 
-      testFB = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/meldingen');
+    //   testFB = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/meldingen');
 
-      var userid = this.userid;
+    //   var userid = this.userid;
 
-      var testID = testFB.push({'lon':this.longitude, 'lat':this.latitude, 'image':this.imageval, 'comment':this.comment, 'tijd': today, 'user': userid });
+    //   var testID = testFB.push({'lon':this.longitude, 'lat':this.latitude, 'image':this.imageval, 'comment':this.comment, 'tijd': today, 'user': userid });
 
-      var newKey = testID.key();
+    //   var newKey = testID.key();
 
-      console.log(newKey);
+    //   console.log(newKey);
 
-      //this.doGeofire(newKey, longitude, latitude);
+    //   //this.doGeofire(newKey, longitude, latitude);
 
-      var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid);
+    //   var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid);
 
-      var usermeldingID = userMelding.push({'key': newKey });
+    //   var usermeldingID = userMelding.push({'key': newKey });
 
-      this.imageval = null;
-      this.comment = '';
+    //   this.imageval = null;
+    //   this.comment = '';
 
-    },
+    // },
 
     doGeofire: function(key, long, lat){
       var firebaseRef = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/geopoints/');
