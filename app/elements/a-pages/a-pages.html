@@ -1,0 +1,440 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../elements.html">
+<dom-module id="a-pages">
+  <style>
+    
+  :root {
+    --primary-blue: #3A52F0;
+
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+
+  .canvas {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 6%;
+    @apply(--layout-vertical);
+    @apply(--layout-center-center);
+  }
+
+  paper-toolbar {
+    background-color: var(--primary-blue);
+  }
+
+  neon-animatable {
+    min-height: 91%;
+  }
+
+
+  neon-animated-pages {
+    min-height: 91%;
+  }
+
+
+
+
+/* ALL BACKGROUNDS */
+
+  .blueback {
+    background-color: var(--primary-blue);
+    color: white;
+  }
+
+
+
+/* GENERAL TYPO  */
+
+    h1,h2 {
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      line-height: 125%;
+    }
+
+    h3 {
+      font-weight: 800;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 125%;
+    }
+
+
+
+
+/* ALL MATTERS BIGBTN */
+
+.bigbtns {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  outline: 0;
+  border-style:none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  padding: 15px 20px 15px 20px;
+  border-radius: 3px;
+/*      border: 1px solid black;*/
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.20);
+/*      color: rgba(0,0,0,0.5);*/
+  text-transform: uppercase;
+}
+
+.bigbtns:hover {
+  background-color: rgba(255,255,255,0.20);
+}
+
+
+
+
+
+/* ALL MATTERS DRAWER */
+
+  .drawerbtn {
+    cursor: pointer;
+  }
+
+  paper-drawer-panel {
+    height: 100%;
+  }
+
+  .drawer {
+    @apply(--layout-vertical);
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+  .drawer-iconsbox {
+    display: inline-block;
+        width: 50px;
+
+    margin: 2px 30px 0px 0px;
+  }
+
+
+
+
+  .drawer-icons {
+    width: 50px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 25px;
+  }
+
+
+
+
+  p {
+    font-size: 14px;
+    margin: 0px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 140%;
+
+    }
+
+  .drawerpart {
+  margin: 10px 0px 10px 0px;
+  }
+
+  .topmargin {
+    margin-top: 30px;
+  }
+
+  a-meldmap {
+    height: 100%;
+    width: 100%;
+  }
+
+
+ a-choicebutton {
+  margin: 10px 0px 10px 0px;
+  }
+
+  /* Material Design Adaptive Breakpoints */
+  /*
+    Below you'll find CSS media queries based on the breakpoint guidance
+    published by the Material Design team. You can choose to use, customise
+    or remove these breakpoints based on your needs.
+
+    http://www.google.com/design/spec/layout/adaptive-ui.html#adaptive-ui-breakpoints
+   */
+
+  /* mobile-small */
+  @media all and (min-width: 0) and (max-width: 360px) and (orientation: portrait) { }
+  /* mobile-large */
+  @media all and (min-width: 361px) and (orientation: portrait) { }
+  /* mobile-small-landscape */
+  @media all and (min-width: 0) and (max-width: 480px) and (orientation: landscape) { }
+  /* mobile-large-landscape */
+  @media all and (min-width: 481px) and (orientation: landscape) { }
+  /* tablet-small-landscape */
+  @media all and (min-width: 600px) and (max-width: 960px) and (orientation: landscape) { }
+  /* tablet-large-landscape */
+  @media all and (min-width: 961px) and (orientation: landscape) { }
+  /* tablet-small */
+  @media all and (min-width: 600px) and (orientation: portrait) { }
+  /* tablet-large */
+  @media all and (min-width: 601px) and (max-width: 840px) and (orientation : portrait) { }
+  /* desktop-x-small-landscape */
+  @media all and (min-width: 0) and (max-width: 480px) and (orientation: landscape) { }
+  /* desktop-x-small */
+  @media all and (min-width: 0) and (max-width: 480px) and (max-aspect-ratio: 4/3) { }
+  /* desktop-small-landscape */
+  @media all and (min-width: 481px) and (max-width: 840px) and (orientation: landscape) { }
+  /* desktop-small */
+  @media all and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4/3) { }
+  /* desktop-medium-landscape */
+  @media all and (min-width: 841px) and (max-width: 1280px) and (orientation: landscape) { }
+  /* desktop-medium */
+  @media all and (min-width: 841px) and (max-width: 1280px) and (max-aspect-ratio: 4/3) { }
+  /* desktop-large */
+  @media all and (min-width: 1281px) and (max-width: 1600px) { }
+  /* desktop-xlarge */
+  @media all and (min-width: 1601px) and (max-width: 1920px) { }
+  </style>
+  <template>
+    <paper-drawer-panel id="paperDrawerPanel" force-narrow="true" >
+      <div drawer class="blueback drawer">
+
+
+        <h2>Gebruik deze app om zwerfvuil te melden.</h2>
+
+        <div class="layout horizontal start drawerpart">
+          <div class="drawer-iconsbox"><img class="drawer-icons" src="../../images/icon-loc2.svg"></div>
+          <p>Geef toestemming om je locatie door te geven</p>
+        </div>
+
+        <div class="layout horizontal start drawerpart">
+          <div class="drawer-iconsbox"><img class="drawer-icons" src="../../images/icon-img.svg"></div>
+          <p>Maak een foto</p>
+        </div>
+
+        <div class="layout horizontal start drawerpart">
+<!--           <img class="drawer-icons" src="../../images/icon-img.svg"> -->
+          <p>Klaar! Je ziet dat de teller +1. Je kan een nieuwe melding starten. </p>
+        </div>
+
+                <h3>© Stad Antwerpen</h3>
+
+<!--         <small>{{userid}}</small> -->
+
+      </div>
+
+          <div main class="blueback" >
+          <!-- <iron-pages attr-for-selected="data-route" selected="{{route}}"> -->
+          <paper-toolbar>
+            <img class="drawerbtn" src="images/a_wit-rgb.svg" paper-drawer-toggle>
+<!--             <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+ -->
+          </paper-toolbar>
+
+          <neon-animated-pages selected="{{selected}}" id="pages" 
+            entry-animation="slide-from-right-animation"
+            exit-animation="slide-left-animation">
+
+            <neon-animatable>
+            <div class="canvas blueback flex">
+<!--               <h1>Hier locatie vragen<span>{{longitude}}</span></h1> -->
+              <!-- <img class="mainimgs" src="images/icon-loc2.svg" on-click="askLocPerm">
+
+
+ -->
+<!--               <a-button icon="../../images/icon-loc2.svg" state="{{buttonstate}}" on-click="askLocPerm"></a-button> -->
+              <a-button icon="../../images/icon-loc2.svg" on-click="askLocPerm" state="{{buttonState}}" size="big"></a-button>
+
+              <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
+
+              <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" order-by-child="key" log></firebase-collection>
+              <template is="dom-repeat" items={{usermeldingen}} index-as="key">
+            <p>{{item.key}}</p>
+          </template>
+
+
+              <template is="dom-if" if="{{showBadge}}">
+                <a-badge number="1"></a-badge>
+              </template>
+
+              <template is="dom-if" if="{{locationPerm}}">
+              <leaflet-map>
+                <leaflet-geolocation on-locationfound="_next" enable-high-accuracy
+                  latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
+                </leaflet-geolocation>
+              </leaflet-map>
+              </template>
+              
+              
+<!--               <paper-button class="bigbtns blueback" on-click="askLocPerm">OK!</paper-button> -->
+            </div>
+
+            </neon-animatable>
+
+<!--             <neon-animatable>
+                        <div class="canvas blueback flex">
+
+              <a-showgeo latitude="{{latitude}}" longitude="{{longitude}}"></a-showgeo>
+                          </div>
+
+            </neon-animatable> -->
+
+            <neon-animatable>
+                        <div class="canvas blueback flex">
+
+
+              <a-melding userid="{{userid}}" latitude="{{latitude}}" longitude="{{longitude}}" on-fileready="_confirm" filedata="{{filedata}}"></a-melding>
+              
+             
+                          </div>
+
+            </neon-animatable>
+
+            <neon-animatable>
+
+
+                <div class="canvas blueback flex">
+                <p>FILE</p>
+                <p>{{filedata}}</p>
+
+                <a-choicebutton id="drol" icon="../../images/icon-VUIL-01.svg" state="waiting" on-select="select" selected="{{select1}}"></a-choicebutton>
+                
+                <a-choicebutton id="zak" icon="../../images/icon-VUIL-02.svg" state="waiting" on-select="select" selected="{{select2}}"></a-choicebutton>
+
+                <a-choicebutton id="sluik" icon="../../images/icon-VUIL-03.svg" state="waiting" on-select="select" selected="{{select3}}"></a-choicebutton>
+
+                <a-smallbutton disabled="{{itemselected}}" icon="../../images/icon-OK.svg" state="waiting" on-klik="verzenden"></a-smallbutton>
+
+                </div>
+            </neon-animatable>
+
+          </neon-animated-pages>
+
+          </div>
+
+  </paper-drawer-panel>
+  </template>
+</dom-module>
+<script>
+(function() {
+  Polymer({
+    is: 'a-pages',
+
+    properties: {
+      foo: {
+        type: String,
+        value: 'bar',
+        notify: true
+      }
+    },
+
+    ready: function(){
+    this.locationPerm = false;
+    this.hasdata = null;
+    this.buttonState = 'waiting';
+    this.showBadge = false;
+    this.selected = 0;
+    //this.fblocation = 'https://blazing-fire-6426.firebaseio.com/ophaal/user/'+this.userid+'/';
+    
+  },
+
+  handleResponse: function(e){
+    var yo = e.detail.response;
+    this.datameld = [];
+    for (var i = yo.length - 1; i >= 0; i--) {
+      console.log(yo[i]);
+    };
+  },
+
+  ondata: function(){
+    console.log('firebase is heere');
+  },
+
+  _next: function(){
+    console.log('next function activated');
+    this.selected = 1;
+  },
+
+  select: function(){
+
+    console.log('trigger select: ',this.select1, this.select2, this.select3);
+    if(this.select1||this.select2||this.select3==true){
+      this.itemselected = true;
+    } else {
+      this.itemselected = false;
+    }
+
+  },
+
+  _confirm: function(){
+    this.selected = 2;
+  },
+
+  askLocPerm: function(){
+    this.buttonState = 'thinking';
+    this.locationPerm = true;
+    if(this.latitude){
+      this.selected = 1;
+    };
+  },
+
+  verzenden: function(){
+    console.log('shit verzenden');
+    this.selected = 0;
+    this.showBadge = true;
+    this.buttonState = 'waiting';
+    this.locationPerm;
+    this.select1 = false;
+    this.select2 = false;
+    this.select3 = false;
+
+    if(this.userid==null){
+      this.userid = uuid.v1();
+    };
+
+    console.log('ik ga saven: ', this.longitude, this.latitude, this.filedata);
+
+    var today = Date.now();
+
+    var testFB = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/meldingen');
+
+    var userid = this.userid;
+
+    var testID = testFB.push({'lon':this.longitude, 
+                              'lat':this.latitude, 
+                              'image':this.filedata, 
+                              'tijd': today, 
+                              'user': userid,
+                              'tags': { '1': this.select1, '2': this.select2, '3': this.select3 }
+                             });
+
+    var newKey = testID.key();
+
+    console.log(newKey);
+
+    var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid);
+
+    var usermeldingID = userMelding.push({'key': newKey });
+
+    this.imageval = null;
+
+    this.comment = '';
+
+  },
+
+  refreshMap: function(){
+    console.log('click refresh');
+    var gmap = document.getElementById('gmap');
+    console.log(gmap);
+    gmap._updateMarkers();
+  }
+
+  });
+})();
+</script>
