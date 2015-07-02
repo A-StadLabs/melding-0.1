@@ -18,40 +18,68 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
+
+    }
+
+    .cardje {
+      width: 360px;
+      padding: 0px;
+      background-color: white;
       margin: 30px 0px 0px 0px;
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
 
     }
 
     h2 {
       margin: 0px 0px 0px 0px;
-      padding: 0px;
-      font-size: 20px;
+      padding: 20px;
+      font-size: 24px;
       font-weight: 300;
       text-transform: capitalize;
+      color: black;
     }
 
+/*.titelholder {
+padding: 20px;
+}*/
     img {
-      width: 300px;
-      margin-right: 6px;
+      margin: 0px 0px 0px 0px;
+            width: 360px;
+
     }
 
     google-map {
+      margin: 0px 0px 0px 0px;
+      padding: 0px;
       height: 150px;
-      width: 300px;
+      width: 360px;
     }
+
+
 
 
   </style>
   <template>
    
   <template is="dom-if" if={{resolve}}>
+    <div class="cardje layout vertical">
+      <div class="titelholder">
      <h2>{{datum}}</h2>
+<<<<<<< HEAD
      <p>Status: <span>{{status}}</span></p>
      <img src="{{image}}" />
+=======
+   </div>
+>>>>>>> origin/master
      <google-map zoom="17" disable-default-ui longitude="{{longitude}}" latitude="{{latitude}}" >
       <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
           title=""></google-map-marker>
      </google-map>
+
+
+     <img src="{{image}}" />
+
+   </div>
 </template>
 <!--      <p>{{newdatum}}</p>
  -->
