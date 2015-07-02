@@ -19,31 +19,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
-      padding: 12px 8px 12px 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      cursor: pointer;
-      width: 300px;
+      margin-top: 20px;
     }
 
-    p {
+    .mainimgs {
+      background-color: #67C79F;
+      border-radius: 25px;
+      width: 50px;
+      height: 50px;
+
+    }
+
+    h3 {
       margin: 0px;
       padding: 0px;
-      text-align: center;
-      height: 20px;
-
-    }
-
-    img {
-      width: 30px;
-      height: 30px;
     }
 
   </style>
   <template>
-    <div class="layout horizontal center" on-click="klik">
-      <p>{{datum}}</p>
-      <div class="flex"></div>
-      <img src="../../images/icon-OK.svg">
+    <div class="mainimgs layout vertical center-center" on-click="klik">
+      <h3>{{number}}</h3>
     </div>
   </template>
 </dom-module>
@@ -110,14 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     stateChanged: function(){
       console.log('button state changed: ', this.state);
-    },
-
-    hasvalue: function(){
-      moment.locale('nl');
-      this.datum = moment(this.number).format('dddd D MMMM, HH:mm');
-
     }
-
 
     
   });

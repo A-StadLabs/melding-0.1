@@ -213,19 +213,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
 
-              <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" order-by-child="key" log></firebase-collection>
+              <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" log></firebase-collection>
 
              <!--  <template is="dom-repeat" items={{usermeldingen}} index-as="key">
                 <p>{{item.key}}</p>
               </template> -->
               <div class="whitespace"></div>
 <!--               <template is="dom-if" if="{{showBadge}}">
+
+
 -->           
-              <template is="dom-repeat" items="{{usermeldingen}}">
-                <a-badge number="{{item.date}}"></a-badge>
-              </template>
-<!--               </template>
- -->
+                <a-badge number="{{aanTal}}"></a-badge>
+ <!--               </template>
+
               <template is="dom-if" if="{{locationPerm}}">
               <leaflet-map>
                 <leaflet-geolocation on-locationfound="_next" enable-high-accuracy
@@ -296,7 +296,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value: '',
         notify: true,
         observer: '_useridChanged'
+      },
+      usermeldingen: {
+        observer: '_meldingChanged'
       }
+    },
+
+    _meldingChanged: function(){
+      //console.log('melding aantal: ', this.usermeldingen);
+      //this.aantal = this.usermeldingen[0].aantal;
     },
 
   ready: function(){
@@ -312,7 +320,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   _useridChanged: function(){
     console.log('first userid? ',this.userid);
+
+    var that = this;
+
     this.fblocation = 'https://blazing-fire-6426.firebaseio.com/ophaal/user/'+this.userid;
+    var getAantal = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+this.userid+'/aantal');
+    this.aantal = getAantal.on('value', function(snap){
+      console.log('aantal:',snap.val());
+      that.aanTal = snap.val(); 
+    });
   },
 
   handleResponse: function(e){
@@ -392,9 +408,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     console.log(newKey);
 
-    var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid);
+    var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid+'/meldingen');
 
     var usermeldingID = userMelding.push({'key': newKey, 'date': today });
+
+    var userAantal = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid+'/aantal');
+
+    userAantal.transaction(function(currentRank) {
+    // If /users/fred/rank has never been set, currentRank will be null.
+    return currentRank+1;
+    });
+
 
     this.imageval = null;
 
