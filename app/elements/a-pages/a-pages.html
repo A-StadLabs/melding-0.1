@@ -43,6 +43,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     height: 91%;
   }
 
+
+
+.whitespace {
+  height: 30px;
+}
+
+
+
 /* ALL BACKGROUNDS */
 
   .blueback {
@@ -210,9 +218,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              <!--  <template is="dom-repeat" items={{usermeldingen}} index-as="key">
                 <p>{{item.key}}</p>
               </template> -->
-
+              <div class="whitespace"></div>
 <!--               <template is="dom-if" if="{{showBadge}}">
--->           <template is="dom-repeat" items="{{usermeldingen}}">
+-->           
+              <template is="dom-repeat" items="{{usermeldingen}}">
                 <a-badge number="{{item.date}}"></a-badge>
               </template>
 <!--               </template>
@@ -258,7 +267,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <a-choicebutton id="zak" icon="../../images/icon-VUIL-02.svg" state="waiting" on-select="select" selected="{{select2}}"></a-choicebutton>
 
                 <a-choicebutton id="sluik" icon="../../images/icon-VUIL-03.svg" state="waiting" on-select="select" selected="{{select3}}"></a-choicebutton>
-
+                <div class="whitespace"></div>
                 <a-smallbutton disabled="{{itemselected}}" icon="../../images/icon-OK.svg" state="waiting" on-klik="verzenden"></a-smallbutton>
 
                 </div>
