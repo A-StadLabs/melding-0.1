@@ -37,9 +37,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </style>
   <template>
+  <neon-animated-pages selected="{{selected}}" id="pages" 
+            entry-animation="scale-down-animation"
+            exit-animation="scale-up-animation">
+    <neon-animatable>
+      <div class="mainimgs layout vertical center-center" on-click="klik">
+        <h3>0</h3>
+      </div>
+    </neon-animatable>
+    <neon-animatable>
     <div class="mainimgs layout vertical center-center" on-click="klik">
       <h3>{{number}}</h3>
     </div>
+    </neon-animatable>
+    </neon-animated-pages>
   </template>
 </dom-module>
 <script>
@@ -99,12 +110,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     ready: function(){
+      this.selected = 0;
       this.playAnimation('entry');
       this.disabled = false;
     },
 
     stateChanged: function(){
       console.log('button state changed: ', this.state);
+    },
+
+    hasvalue: function(){
+      this.selected = 1;
     }
 
     
