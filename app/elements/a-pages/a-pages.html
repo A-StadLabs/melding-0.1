@@ -199,8 +199,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-toolbar>
 
           <neon-animated-pages selected="{{selected}}" id="pages" 
-            entry-animation="slide-from-right-animation"
-            exit-animation="slide-left-animation">
+            entry-animation="{{entryAnimation}}"
+            exit-animation="{{exitAnimation}}"
+            timing="{{timing}}">
 
             <neon-animatable>
             <div class="canvas blueback flex">
@@ -288,14 +289,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
-    ready: function(){
+  ready: function(){
     this.locationPerm = false;
     this.hasdata = null;
     this.buttonState = 'waiting';
     this.showBadge = false;
     this.selected = 0;
-    //this.fblocation = 'https://blazing-fire-6426.firebaseio.com/ophaal/user/'+this.userid+'/';
-    
+    this.entryAnimation = 'slide-from-right-animation';
+    this.exitAnimation = 'slide-left-animation';
+    this.timing = 30000;
   },
 
   handleResponse: function(e){
@@ -316,6 +318,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   },
 
   select: function(){
+
+    this.entryAnimation = 'slide-from-right-animation';
+    this.exitAnimation = 'slide-up-animation';
 
     console.log('trigger select: ',this.select1, this.select2, this.select3);
     if(this.select1||this.select2||this.select3==true){
@@ -379,6 +384,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     this.imageval = null;
 
     this.comment = '';
+
+    this.entryAnimation = 'slide-from-right-animation';
+    this.exitAnimation = 'slide-left-animation';
 
   },
 
