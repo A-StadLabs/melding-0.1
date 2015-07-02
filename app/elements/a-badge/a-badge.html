@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/neon-animation/neon-animatable.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../ons-animatie-in.html">
+<link rel="import" href="../ons-animatie-badge.html">
 <link rel="import" href="../ons-animatie-uit.html">
 <link rel="import" href="../ons-animatie-thinking.html">
 
@@ -22,12 +23,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-top: 20px;
     }
 
-    .mainimgs {
-      background-color: #67C79F;
+    .badge {
+      background-color: rgba(0,0,0,0.05);
       border-radius: 25px;
       width: 50px;
       height: 50px;
-
+      color: rgba(0,0,0,0.3);
     }
 
     h3 {
@@ -37,20 +38,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </style>
   <template>
-  <neon-animated-pages selected="{{selected}}" id="pages" 
-            entry-animation="scale-down-animation"
-            exit-animation="scale-up-animation">
-    <neon-animatable>
-      <div class="mainimgs layout vertical center-center" on-click="klik">
-        <h3>0</h3>
-      </div>
-    </neon-animatable>
-    <neon-animatable>
-    <div class="mainimgs layout vertical center-center" on-click="klik">
+    <div id="badge" class="badge layout vertical center-center">
       <h3>{{number}}</h3>
     </div>
-    </neon-animatable>
-    </neon-animated-pages>
   </template>
 </dom-module>
 <script>
@@ -67,22 +57,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     number: {
         type: Number,
         value: 0,
-        observer: 'hasvalue'
+        observer: 'hasvalue',
+          notify: true
+
     },
 
     animationConfig: {
       value: function() {
         return {
-          'entry': {
-            name: 'ons-animatie-in',
-            node: this.$.wit,
-            timing: {duration: 1200}
-          },
-          'thinking': {
-            name: 'ons-animatie-thinking',
-            node: this.$.drop,
-            timing: {duration: 1200}
-          },
+          'animeren': {
+            name: 'ons-animatie-badge',
+            node: this.$.badge,
+            timing: {duration: 300}
+          }
         }          
       }
     }
@@ -94,15 +81,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onNeonAnimationFinish: function(){
-      this.checkWhattodo();
-    },
-
-    checkWhattodo: function(){
-      if(this.state=='waiting'){
-        this.playAnimation('entry');
-      } else {
-        this.playAnimation('thinking');
-      }
     },
 
     klik: function(){
@@ -110,17 +88,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     ready: function(){
-      this.selected = 0;
-      this.playAnimation('entry');
       this.disabled = false;
     },
 
-    stateChanged: function(){
-      console.log('button state changed: ', this.state);
-    },
-
     hasvalue: function(){
-      this.selected = 1;
+      console.log('ANIMEREEEE!!');
+      this.playAnimation('animeren');
+
+
     }
 
     
