@@ -201,6 +201,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  -->
           </paper-toolbar>
 
+           <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
+
           <neon-animated-pages selected="{{selected}}" id="pages" 
             entry-animation="{{entryAnimation}}"
             exit-animation="{{exitAnimation}}"
@@ -211,11 +213,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <a-button icon="../../images/icon-loc2.svg" on-click="askLocPerm" state="{{buttonState}}" size="big"></a-button>
 
-              <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
-
               <div class="whitespace"></div>
         
-                <a-badge number="{{aanTal}}"></a-badge>
+              <a-badge number="{{aanTal}}"></a-badge>
 
               <template is="dom-if" if="{{locationPerm}}">
               <leaflet-map>
@@ -254,6 +254,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="whitespace"></div>
                 <a-smallbutton disabled="{{itemselected}}" icon="../../images/icon-OK.svg" state="waiting" on-klik="verzenden"></a-smallbutton>
 
+                </div>
+            </neon-animatable>
+
+            <neon-animatable>
+
+                <div class="canvas blueback flex">
+                  <p>{{userid}}</p>
+                  <a-lijst userid="{{userid}}"></a-lijst>
                 </div>
             </neon-animatable>
 
@@ -300,6 +308,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     this.entryAnimation = 'slide-from-right-animation';
     this.exitAnimation = 'slide-left-animation';
     console.log('first userid? ',this.userid);
+    this.aanTal = 0;
   },
 
   _useridChanged: function(){

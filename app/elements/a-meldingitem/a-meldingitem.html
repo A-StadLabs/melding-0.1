@@ -46,7 +46,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
   <template is="dom-if" if={{resolve}}>
      <h2>{{datum}}</h2>
-     <p>{{comment}}</p>
      <img src="{{image}}" />
      <google-map zoom="17" disable-default-ui longitude="{{longitude}}" latitude="{{latitude}}" >
       <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
@@ -87,21 +86,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var that = this;
         var getFB = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/meldingen/'+this.key);
         getFB.once('value', function(snap){
-          that.comment = snap.val().comment;
           that.longitude = snap.val().lon;
           that.latitude = snap.val().lat;
           console.log(that.latitude, snap.val().lat);
-          that.image = snap.val().image;
+          that.image = snap.val().image.detail;
           moment.locale('nl');
           that.datum = moment(snap.val().tijd).format('dddd D MMMM, HH:mm');
           that.resolve = true;
         });
-
-        
       }
      
-
-    
   });
 })();
 </script>
