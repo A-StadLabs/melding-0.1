@@ -46,6 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
   <template is="dom-if" if={{resolve}}>
      <h2>{{datum}}</h2>
+     <p>Status: <span>{{status}}</span></p>
      <img src="{{image}}" />
      <google-map zoom="17" disable-default-ui longitude="{{longitude}}" latitude="{{latitude}}" >
       <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
@@ -88,6 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         getFB.once('value', function(snap){
           that.longitude = snap.val().lon;
           that.latitude = snap.val().lat;
+          that.status = snap.val().status;
           console.log(that.latitude, snap.val().lat);
           that.image = snap.val().image.detail;
           moment.locale('nl');

@@ -163,6 +163,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </style>
   <template>
+    <script src="../../bower_components/base-64/base64.js"></script>
     <paper-drawer-panel id="paperDrawerPanel" force-narrow="true" >
       <div drawer class="blueback drawer">
 
@@ -401,10 +402,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                               'image':this.filedata, 
                               'tijd': today, 
                               'user': userid,
+                              'status': "2",
                               'tags': { '1': this.select1, '2': this.select2, '3': this.select3 }
                              });
 
     var newKey = testID.key();
+
+    var zappFB = new Firebase('https://blazing-fire-6426.firebaseio.com/zapier_queue/out');
+
+    var image = base64.decode(this.filedata);
+
+    var zappIP = zappFB.push({'lon':this.longitude, 
+                              'lat':this.latitude, 
+                              'image':image, 
+                              'tijd': today, 
+                              'user': userid,
+                              'key': newKey,
+                              'tags': { '1': this.select1, '2': this.select2, '3': this.select3 }
+                             });
 
     console.log(newKey);
 

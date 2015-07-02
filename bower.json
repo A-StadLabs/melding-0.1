@@ -14,7 +14,8 @@
     "npm": "~2.12.0",
     "install": "~1.0.4",
     "webcomponent-qr-code": "~0.1.7",
-    "google-map": "GoogleWebComponents/google-map#~1.0.3"
+    "google-map": "GoogleWebComponents/google-map#~1.0.3",
+    "base-64": "~0.1.0"
   },
   "devDependencies": {
     "web-component-tester": "*",
