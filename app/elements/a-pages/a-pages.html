@@ -216,7 +216,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <div class="whitespace"></div>
         
-              <a-badge number="{{aanTal}}"></a-badge>
+              <a-badge number="{{aanTal}}" on-click="viewMeldingen"></a-badge>
 
               <template is="dom-if" if="{{locationPerm}}">
               <leaflet-map>
@@ -293,6 +293,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       usermeldingen: {
         observer: '_meldingChanged'
       }
+    },
+
+    viewMeldingen: function(){
+      this.selected = 3;
+      console.log('yoyoyoyo');
     },
 
     _meldingChanged: function(){
