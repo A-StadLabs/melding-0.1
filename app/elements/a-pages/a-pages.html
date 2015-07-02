@@ -207,14 +207,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" order-by-child="key" log></firebase-collection>
 
-              <template is="dom-repeat" items={{usermeldingen}} index-as="key">
+             <!--  <template is="dom-repeat" items={{usermeldingen}} index-as="key">
                 <p>{{item.key}}</p>
-              </template>
+              </template> -->
 
 <!--               <template is="dom-if" if="{{showBadge}}">
 -->           <template is="dom-repeat" items="{{usermeldingen}}">
-                <!-- <a-badge number="1"></a-badge> -->
-                  <p>{{item.date}}</p>
+                <a-badge number="{{item.date}}"></a-badge>
               </template>
 <!--               </template>
  -->

@@ -20,63 +20,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
       margin-top: 20px;
-      
     }
 
+    .mainimgs {
+      background-color: #67C79F;
+      border-radius: 25px;
+      width: 50px;
+      height: 50px;
 
-.mainimgs {
-  background-color: #67C79F;
-  border-radius: 25px;
-  width: 50px;
-  height: 50px;
+    }
 
-}
-
-h3 {
-  margin: 0px;
-  padding: 0px;
-}
-
-/*.mainimgsdis {
-  border-radius: 35px;
-  width: 70px;
-  height: 70px;
-
-  opacity: 0.2;
-
-}*/
-
-
-/*
-.mainimgs img {
-  width: 70px;
-  height: 70px;
-}
-*/
-
-/*.mainimgs:hover {
-  cursor: pointer;
-}
-*/
-
-/*
-#wit {
-  background-color: rgba(255,255,255,0.15);
-  border-radius: 35px;
-  width: 70px;
-  height: 70px;
-  margin: auto;
-
-}
-*/
+    h3 {
+      margin: 0px;
+      padding: 0px;
+    }
 
   </style>
   <template>
     <div class="mainimgs layout vertical center-center" on-click="klik">
-          <h3>{{number}}</h3>
+      <h3>{{datum}}</h3>
     </div>
-    
-
   </template>
 </dom-module>
 <script>
@@ -94,9 +57,7 @@ h3 {
         type: Number,
         value: 0,
         observer: 'hasvalue'
-      },
-
-    
+    },
 
     animationConfig: {
       value: function() {
@@ -111,7 +72,6 @@ h3 {
             node: this.$.drop,
             timing: {duration: 1200}
           },
-
         }          
       }
     }
@@ -145,7 +105,14 @@ h3 {
 
     stateChanged: function(){
       console.log('button state changed: ', this.state);
+    },
+
+    hasvalue: function(){
+      moment.locale('nl');
+      this.datum = moment(this.number).format('dddd D MMMM, HH:mm');
+
     }
+
 
     
   });
