@@ -16,11 +16,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   :root {
     --primary-blue: #3A52F0;
-
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-
 
   .canvas {
     width: 100%;
@@ -41,13 +39,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     height: 91%;
   }
 
-
   neon-animated-pages {
     height: 91%;
   }
-
-
-
 
 /* ALL BACKGROUNDS */
 
@@ -55,8 +49,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     background-color: var(--primary-blue);
     color: white;
   }
-
-
 
 /* GENERAL TYPO  */
 
@@ -72,9 +64,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       -webkit-font-smoothing: antialiased;
       line-height: 125%;
     }
-
-
-
 
 /* ALL MATTERS BIGBTN */
 
@@ -96,10 +85,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 .bigbtns:hover {
   background-color: rgba(255,255,255,0.20);
 }
-
-
-
-
 
 /* ALL MATTERS DRAWER */
 
@@ -124,17 +109,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     margin: 2px 30px 0px 0px;
   }
 
-
-
-
   .drawer-icons {
     width: 50px;
     background-color: rgba(255,255,255,0.2);
     border-radius: 25px;
   }
-
-
-
 
   p {
     font-size: 14px;
@@ -142,7 +121,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     -webkit-font-smoothing: antialiased;
     line-height: 140%;
 
-    }
+  }
 
   .drawerpart {
   margin: 10px 0px 10px 0px;
@@ -157,7 +136,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     width: 100%;
   }
 
-
  a-choicebutton {
   margin: 10px 0px 10px 0px;
   }
@@ -166,7 +144,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <paper-drawer-panel id="paperDrawerPanel" force-narrow="true" >
       <div drawer class="blueback drawer">
-
 
         <h2>Gebruik deze app om zwerfvuil te melden.</h2>
 
@@ -185,7 +162,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <p>Klaar! Je ziet dat de teller +1. Je kan een nieuwe melding starten. </p>
         </div>
 
-                <h3>© Stad Antwerpen</h3>
+        <h3>© Stad Antwerpen</h3>
 
 <!--         <small>{{userid}}</small> -->
 
@@ -217,10 +194,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <p>{{item.key}}</p>
               </template>
 
-              <template is="dom-if" if="{{showBadge}}">
-                <a-badge number="1"></a-badge>
+<!--               <template is="dom-if" if="{{showBadge}}">
+-->           <template is="dom-repeat" items="{{usermeldingen}}">
+                <!-- <a-badge number="1"></a-badge> -->
+                  <p>{{item.date}}</p>
               </template>
-
+<!--               </template>
+ -->
               <template is="dom-if" if="{{locationPerm}}">
               <leaflet-map>
                 <leaflet-geolocation on-locationfound="_next" enable-high-accuracy
@@ -228,8 +208,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </leaflet-geolocation>
               </leaflet-map>
               </template>
-              
-              
 <!--               <paper-button class="bigbtns blueback" on-click="askLocPerm">OK!</paper-button> -->
             </div>
 
@@ -287,6 +265,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: String,
         value: 'bar',
         notify: true
+      },
+      userid: {
+        type: String,
+        value: '',
+        notify: true,
+        observer: '_useridChanged'
       }
     },
 
@@ -298,7 +282,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     this.selected = 0;
     this.entryAnimation = 'slide-from-right-animation';
     this.exitAnimation = 'slide-left-animation';
-    this.timing = 30000;
+    console.log('first userid? ',this.userid);
+  },
+
+  _useridChanged: function(){
+    console.log('first userid? ',this.userid);
+    this.fblocation = 'https://blazing-fire-6426.firebaseio.com/ophaal/user/'+this.userid;
   },
 
   handleResponse: function(e){
@@ -380,7 +369,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid);
 
-    var usermeldingID = userMelding.push({'key': newKey });
+    var usermeldingID = userMelding.push({'key': newKey, 'date': today });
 
     this.imageval = null;
 
