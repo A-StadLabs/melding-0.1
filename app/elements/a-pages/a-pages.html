@@ -30,6 +30,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     @apply(--layout-center-center);
   }
 
+
+    .canvas2 {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 6% 0px 0px 0px;
+    @apply(--layout-vertical);
+    @apply(--layout-center-center);
+  }
+
   paper-toolbar {
     background-color:  var(--primary-blue);
     height: 9%;
@@ -261,7 +271,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <neon-animatable>
 
                 <div class="canvas blueback flex">
-                  <p>{{userid}}</p>
                   <a-lijst userid="{{userid}}"></a-lijst>
                 </div>
             </neon-animatable>
