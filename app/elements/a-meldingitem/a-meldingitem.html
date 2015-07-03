@@ -39,9 +39,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       color: black;
     }
 
-/*.titelholder {
+.titelholder {
 padding: 20px;
-}*/
+}
     img {
       margin: 0px 0px 0px 0px;
             width: 360px;
@@ -64,7 +64,8 @@ padding: 20px;
   <template is="dom-if" if={{resolve}}>
     <div class="cardje layout vertical">
       <div class="titelholder">
-     <h2>{{datum}}</h2>
+        <h2>{{datum}}</h2>
+     </div>
 
      <p>Status: <span>{{status}}</span></p>
      <img src="{{image}}" />

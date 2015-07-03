@@ -419,11 +419,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     var zappFB = new Firebase('https://blazing-fire-6426.firebaseio.com/zapier_queue/out');
 
-    var image = base64.decode(this.filedata);
+    //var image = base64.decode(this.filedata);
 
     var zappIP = zappFB.push({'lon':this.longitude, 
                               'lat':this.latitude, 
-                              'image':image, 
+                              'image':this.filedata, 
                               'tijd': today, 
                               'user': userid,
                               'key': newKey,
